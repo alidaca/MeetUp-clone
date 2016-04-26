@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="39px" height="39px" viewBox="0 0 39 39" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.3.1 (12005) - http://www.bohemiancoding.com/sketch -->
+    <title>Rectangle 1</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="logo" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <image id="book" sketch:type="MSBitmapLayer" x="1" y="0" width="36.5625" height="39" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADwAAABACAYAAABGHBTIAAAAAXNSR0IArs4c6QAAAlRJREFUaAXtW71KBEEMPi0EK1vBVhB8A8HWJxF8AN/G1koQBGvBRrCy8hkEQRAUrhEETfbM3Ux057vZy2IGMjA3k0ny5eeD5difyWQ2dmi5oPlE80tNErOh9avKGfgAAcXnmrg2rrEbe/T7SrPPcWa1+O2zG3q+QB62WzYu17jPIS5plpzYJh0l2yG6FHvIvibm1RpFeKO5VYjENungAJZD49di1+Qz5WDIQSeE7GsT1vi1/lX5rNeit24fBbfOIMo/GEYdal0fDLfOIMo/GEYdal0fDLfOIMo/GEYdal0fDLfOIMo/GEYdal3vneFjavCJdZP5Fklp6ngl2yE6jS/yAW0+fuahHP6x1sYsFstgetQGQPYan+Vtmuk98heS5/eV2SAZCF/r3RW8QcXc0dSJPtDZZlKobLUdkn8BawcBllXrV5UFV9Yz2vRhnotRsvbZ9p33gotDgt1t5dxqTfH5IoVwT1OHJew1Hgyg8KG9DoBkwZeLFLL/JIcjcaIV2Ws9dEiwu60GWFVmUH2RQpj8nGi3y6bBgvkidU8TFan1j+TDj4j0OZKhA2FmAwHW6ksXKYR1TZkhm0zv4dlS1s2xBe9/Lc3rj4LNW+oMMBh2Roh5OsGweUudAQbDzggxTycYNm+pM8Bg2Bkh5ukEw+YtdQYYDDsjxDydYNi8pc4Ag2FnhJinEwybt9QZYDDsjBDzdIJh85Y6A2SG353lNGY6Uy74dswIzrBvOB/+APE/P7bMHmdSLmPJ848tuWh+JYg/unymqQPSUTa03rvMNXFt3WtP3/I+nQlvxRyQAAAAAElFTkSuQmCC"></image>
+        <path d="M20.7286771,0 L3.99040483,0 C1.78994178,0 0,1.7865651 0,3.99040483 L0,35.0095952 C0,37.2100582 1.7865651,39 3.99040483,39 L35.0095952,39 C37.2100582,39 39,37.2134349 39,35.0095952 L39,3.99040483 C39,1.78994178 37.2134349,0 35.0095952,0 L30.6977452,0 L30.6977452,19.4024725 L25.8208195,13.6103091 L20.7286771,18.8718991 L20.7286771,1.38777878e-17 Z M6,0 L9,0 L9,39 L6,39 L6,0 Z" id="Rectangle-1" fill="#D8D8D8" sketch:type="MSShapeGroup"></path>
+    </g>
+</svg>
