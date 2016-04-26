@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="347px" height="186px" viewBox="0 0 347 186" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.3.1 (12005) - http://www.bohemiancoding.com/sketch -->
+    <title>Desktop - home</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <filter x="-50%" y="-50%" width="200%" height="200%" filterUnits="objectBoundingBox" id="filter-1">
+            <feOffset dx="0" dy="2" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="2" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.35 0" in="shadowBlurOuter1" type="matrix" result="shadowMatrixOuter1"></feColorMatrix>
+            <feMerge>
+                <feMergeNode in="shadowMatrixOuter1"></feMergeNode>
+                <feMergeNode in="SourceGraphic"></feMergeNode>
+            </feMerge>
+        </filter>
+    </defs>
+    <g id="Layout" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="Desktop---home" sketch:type="MSArtboardGroup" transform="translate(-378.000000, -22.000000)">
+            <rect id="Rectangle-22" fill="#72A59A" sketch:type="MSShapeGroup" x="0" y="0" width="1024" height="800"></rect>
+            <g id="event-planner-+-Logo-Copy" sketch:type="MSLayerGroup" transform="translate(345.000000, 0.000000)" font-weight="normal">
+                <text id="------event-planner" sketch:type="MSTextLayer" font-family="Neuton" font-size="40.7734807" fill="#FFFFFF">
+                    <tspan x="0" y="198.726316">      event planner</tspan>
+                </text>
+                <text id="Logo" fill="white" filter="url(#filter-1)" sketch:type="MSTextLayer" font-family="Mr De Haviland" font-size="163.093923">
+                    <tspan x="24.9171271" y="143" fill="#FFFFFF">a</tspan>
+                    <tspan x="74.3345856" y="143" fill="#FFFFFF">Meetup</tspan>
+                </text>
+            </g>
+        </g>
+    </g>
+</svg>

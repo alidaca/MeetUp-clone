@@ -1,0 +1,30 @@
+{
+  "name": "dev-tips-starter-kit",
+  "version": "1.0.0",
+  "description": "Simple structure for a simple start to a simple site.",
+  "main": "build/index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "boilerplate",
+    "seed",
+    "starter-kit",
+    "devtips",
+    "sass",
+    "jade",
+    "gulp"
+  ],
+  "author": "Maikel Rivero Dorta <mriverodorta@gmail.com>",
+  "license": "ISC",
+  "devDependencies": {
+    "browser-sync": "^2.7.11",
+    "del": "^2.2.0",
+    "gulp": "^3.9.0",
+    "gulp-autoprefixer": "1.0.0",
+    "gulp-jade": "^1.0.1",
+    "gulp-jshint": "^1.11.0",
+    "gulp-sass": "^2.0.1",
+    "run-sequence": "^1.1.5"
+  }
+}

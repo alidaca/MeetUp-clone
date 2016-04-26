@@ -1,0 +1,35 @@
+.main-wrap
+  display: flex
+  flex-wrap: wrap
+  justify-content: center
+  max-width: 1200px
+  margin-left: auto
+  margin-right: auto
+  padding: 50px 0
+  .event-card
+    // max-witdh: 320px
+    background-color: $accent2
+    color: $text2
+    margin: 20px
+    border-radius: 10px
+    h3,p
+      margin: 0
+      padding: 0
+    hr
+      margin-bottom: 10px
+      margin-top: 5px
+      border-color: $accent1
+
+  .event-card.media-element
+    align-items: flex-start
+    .event-description
+      font-weight: 200
+
+@media (max-width: 551px)
+  .main-wrap
+    display: block
+    padding-top: 20px
+    .event-card
+      margin: 10px
+    .media
+      max-width: 30px

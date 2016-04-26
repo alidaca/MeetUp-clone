@@ -1,0 +1,36 @@
+.header-wrap
+  display: flex
+  flex-direction: column-reverse
+  max-width: 1200px
+  margin-left: auto
+  margin-right: auto
+
+  .logo
+      // width: 100%
+      text-align: center
+      margin: 0
+      padding: 0
+      h1.show-image
+        width: 420px
+        height: 210px
+        margin: auto auto 20px auto
+        background:
+          image: url(/assets/img/logo.png)
+          repeat: no-repeat
+          position: center
+          size: 90% auto
+  .login
+    order: 0
+    padding: 0
+    .media-element-login
+      justify-content: flex-end
+      a
+        text-decoration: underline
+        font-size: 16px
+
+
+@media (max-width: 551px)
+  h1.show-image
+    max-width: 210px
+    max-height: 105px
+
