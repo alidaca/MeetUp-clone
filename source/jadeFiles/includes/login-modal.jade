@@ -35,17 +35,18 @@
         label(for="email-reg") Enter your email (required)
         input(type="email" name="email" id="email-reg" placeholder="john@doamin.com" autocomplete="email" required)
 
-        label(for="psw-reg") Choose a password (required)
+        label(for="pwd-reg") Choose a password (required)
         input(type="password" id="psw-reg" required)
 
-        label(for="confirm-psw") Confirm your password 
+        label(for="confirm-pwd") Confirm your password 
         input(type="password" id="confirm-psw" required)
 
       .instructions
         p Your password must:
         ul
           li be at least 8 characters long
-          li contain a symbol
+          li= 'contain a symbol (!,@,#,$,%,^,&,*)'
+          li include a number
           li include an uppercase letter
           li include a lowercase letter
 

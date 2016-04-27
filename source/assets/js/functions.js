@@ -26,3 +26,59 @@ $('.modal-btn-back').on('click', function(){
 });
 
 $('.modal-trigger').leanModal({overlay: 0.6, closeButton: '.modal-close'});
+
+//password validation
+
+function passwordLength(password){
+  var psw = password;
+  if (psw.length >= 8){
+    return true;
+  }else{
+    return false;
+  }
+}
+
+function includesSymbol(password){
+  var psw = password;
+  if (psw.match(/[\!\@\#\$\%\^\&\*]/g)){
+    return true;
+  }else{
+    return false;
+  }
+}
+
+function includesNumber(password){
+  var psw = password;
+  if(psw.match(/\d/g)){
+    return true;
+  }else{
+    return false;
+  }
+}
+
+function includesLowercase(password){
+  var psw = password;
+  if(psw.match(/[a-z]/g)){
+    return true;
+  }else{
+    return false;
+  }
+}
+
+function includesUppercase(password){
+  var psw = password;
+  if(psw.match(/[A-Z]/g)){
+    return true;
+  }else{
+    return false;
+  }
+}
+
+function includesIllegal(password){
+  var psw = password;
+  if(psw.match(/[^A-z0-9\!\@\#\$\%\^\&\*]/g)){
+    return true;
+  }else{
+    return false;
+  }
+}
