@@ -1,0 +1,112 @@
+.login-modal-wrap
+  display: none
+  background-color: $bg
+  border: 2px solid $accent2
+  border-radius: 10px
+  width: 400px
+  margin: auto
+  text-align: center
+
+  .modal-header
+    display: flex
+    justify-content: space-between
+    align-items: center
+    padding: 10px
+    background-color: $accent2
+
+    h3
+      color: $text2
+      margin: 0 10px 0 0
+      padding: 0
+
+
+    .modal-close
+      width: 30px
+      height: 30px
+      // border-left: 1px solid $text1
+      padding: 0 5px
+      cursor: pointer
+
+      span
+        display: block
+        content: ""
+        height: 30px
+
+        &:before,
+        &:after
+          content: ""
+          display: block
+          height: 2px
+          background-color: $text2
+
+      span:before
+        transform: rotate(45deg) translate(7px,-0px)        
+        transform-origin: top left
+
+      span:after
+        transform: rotate(-45deg) translate(-6px,-2px)         
+        transform-origin: top right
+
+  .modal-body
+    padding: 20px
+    text-align: left
+
+    .button
+      width: 100%
+      text-align: left
+      margin: 5px 0 10px 0
+
+    p
+      font-size: 18px
+
+    .main-login 
+      text-align: center
+
+    .footer-wrap
+      display: flex
+
+      .button
+        text-align: center
+
+        &:first-of-type
+          margin-right: 5px
+
+        &:last-of-type
+          margin-left: 5px
+    .email-login
+      display: none
+
+    .signup-form
+      display: none
+
+    label
+      font-size: 16px
+      font-style: italic
+
+    input
+      display: block
+      box-sizing: border-box
+      width: 100%
+      margin-bottom: 10px
+      background-color: $light-bg
+      border: 1px solid $accent2
+      padding: 5px
+      border-radius: 10px
+
+    .instructions 
+      p
+        font-size: 16px
+        margin: 0
+      ul
+        margin: 0px auto 5px auto
+
+//required by leanModal.js plugin
+#lean_overlay 
+  position: fixed
+  z-index: 100
+  top: 0px
+  left: 0px
+  height: 100%
+  width: 100%
+  background: #000
+  display: none

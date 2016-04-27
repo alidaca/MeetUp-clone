@@ -1,13 +1,12 @@
-
 .header-wrap
   .logo 
     h1.hide-text.show-image MeetApp - event planner
-    input.new-event(type="button" value="Schedule an event")
+    a.button.new-event.modal-trigger(href="#modal") Schedule an event
   .login
     .media-element.media-element-login
       .media
         img(src="/assets/img/icons/user-icon.svg")
       .caption.caption-login
-        a(href='#') Login or Register
+        a.modal-trigger(href='#modal') Login or Register
   
  

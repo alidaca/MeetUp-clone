@@ -1,0 +1,56 @@
+.login-modal-wrap(id="modal")
+  .modal-header
+    h3.modal-title Login to create an event
+    .modal-close
+      span
+  section.modal-body
+
+    //main login screen - with social
+    .main-login
+      a.button Login with Facebook
+      a.button Login with Google
+      p Or use your email
+      .footer-wrap
+        a.button(id='modal-btn-login') Login
+        a.button(id='modal-btn-signUp') Sign up
+
+    //login with email screen
+    .email-login
+      form
+        label(for="email-login") Enter your email
+        input(type="text" id="email-login" autocomplete required placeholder="john@domain.com")
+
+        label(for="pwd-login") Choose a password
+        input(type="password" id="pwd-login" required)
+      .footer-wrap
+        a.button.modal-btn-back Back
+        a.button(id='modal-btn-signIn') Login
+
+    //sign-up screen
+    .signup-form
+      form
+        label(for="name") What's your name? (required)
+        input(type="text" id="name" placeholder="John Smith")
+
+        label(for="email-reg") Enter your email (required)
+        input(type="text" id="email-reg" placeholder="john@doamin.com")
+
+        label(for="psw-reg") Choose a password (required)
+        input(type="password" id="psw-reg")
+
+        label(for="confirm-psw") Confirm your password 
+        input(type="password" id="confirm-psw")
+
+      .instructions
+        p Your password must:
+        ul
+          li be at least 8 characters long
+          li contain a symbol
+          li include an uppercase letter
+          li include a lowercase letter
+
+      .footer-wrap
+        a.button.modal-btn-back Back
+        a.button(id='modal-btn-register') Register
+
+
