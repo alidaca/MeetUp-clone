@@ -18,7 +18,7 @@
     .email-login
       form
         label(for="email-login") Enter your email
-        input(type="text" id="email-login" autocomplete required placeholder="john@domain.com")
+        input(type="email" name="email" id="email-login" autocomplete="email" placeholder="john@domain.com" required)
 
         label(for="pwd-login") Choose a password
         input(type="password" id="pwd-login" required)
@@ -30,16 +30,16 @@
     .signup-form
       form
         label(for="name") What's your name? (required)
-        input(type="text" id="name" placeholder="John Smith")
+        input(type="text" name="name" id="name" placeholder="John Smith" autocomplete="name" required)
 
         label(for="email-reg") Enter your email (required)
-        input(type="text" id="email-reg" placeholder="john@doamin.com")
+        input(type="email" name="email" id="email-reg" placeholder="john@doamin.com" autocomplete="email" required)
 
         label(for="psw-reg") Choose a password (required)
-        input(type="password" id="psw-reg")
+        input(type="password" id="psw-reg" required)
 
         label(for="confirm-psw") Confirm your password 
-        input(type="password" id="confirm-psw")
+        input(type="password" id="confirm-psw" required)
 
       .instructions
         p Your password must:

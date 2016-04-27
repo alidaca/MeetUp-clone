@@ -203,27 +203,6 @@ body {
   white-space: nowrap;
   overflow: hidden; }
 
-/** selection colors.scss **/
-::-moz-selection {
-  background: #FFF498; }
-::selection {
-  background: #FFF498; }
-
-::-moz-selection {
-  background: #FFF498; }
-
-img::-moz-selection {
-  background: transparent; }
-
-img::selection {
-  background: transparent; }
-
-img::-moz-selection {
-  background: transparent; }
-
-body {
-  -webkit-tap-highlight-color: #FFF498; }
-
 /** links.sass **/
 a {
   color: #023D30;
@@ -322,6 +301,9 @@ input[type="button"] {
     color: #023D30;
     outline: 0;
     background-color: #C8F9EE; }
+
+input:focus {
+  outline-color: #C8F9EE; }
 
 .media-element {
   display: -ms-flexbox;
