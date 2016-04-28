@@ -407,10 +407,11 @@ input.invalid:focus {
     .login-modal-wrap .modal-body .instructions p {
       font-size: 16px;
       margin: 0; }
-    .login-modal-wrap .modal-body .instructions ul {
-      margin: 0px auto 5px auto; }
     .login-modal-wrap .modal-body .instructions li.invalid {
-      color: red; }
+      color: #8B0303; }
+
+.hidden {
+  display: none; }
 
 #lean_overlay {
   position: fixed;
