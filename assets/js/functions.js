@@ -29,6 +29,19 @@ $('.modal-trigger').leanModal({overlay: 0.6, closeButton: '.modal-close'});
 
 //password validation
 
+$('#confirm-pwd').on('keyup',function(){
+  var firstPwd = $('#pwd-reg').val();
+  var secondPwd = $('#confirm-pwd').val();
+  console.log(firstPwd);
+  console.log(secondPwd);
+  console.log(firstPwd===secondPwd);
+  if (firstPwd !== secondPwd){
+    $('#confirm-pwd').addClass('invalid');
+  }else{
+    $('#confirm-pwd').removeClass('invalid');
+  }
+});
+
 function passwordLength(password){
   var psw = password;
   if (psw.length >= 8){
