@@ -302,6 +302,15 @@ input[type="button"] {
     outline: 0;
     background-color: #C8F9EE; }
 
+.button[disabled="disabled"],
+button[disabled="disabled"],
+input[type="submit"][disabled="disabled"],
+input[type="reset"][disabled="disabled"],
+input[type="button"][disabled="disabled"] {
+  background-color: #cdd6d4;
+  color: #a9aaaa;
+  cursor: not-allowed; }
+
 input[type="text"],
 input[type="textarea"],
 input[type="email"],
@@ -323,14 +332,12 @@ input[type="email"]:focus {
   background-color: #C7DBD7;
   border: 1px solid #01614B; }
 
-input.invalid,
+input.invalid:focus,
 input[type="text"]:focus:required:invalid,
 input[type="textarea"]:focus:required:invalid,
 input[type="email"]:focus:required:invalid {
   border: 1px solid #8B0303;
-  background-color: #fedbdb; }
-
-input.invalid:focus {
+  background-color: #fedbdb;
   outline-color: #8B0303; }
 
 .media-element {
