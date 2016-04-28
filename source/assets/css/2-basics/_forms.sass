@@ -19,12 +19,13 @@ input[type="email"]:focus
   background-color: $light-bg
   border: 1px solid $accent2
 
-input.invalid,
+input.invalid:focus,
 input[type="text"]:focus:required:invalid,
 input[type="textarea"]:focus:required:invalid,
 input[type="email"]:focus:required:invalid
   border: 1px solid $red
   background-color: $light-red
-
-input.invalid:focus
   outline-color: $red
+
+// input.invalid:focus
+//   outline-color: $red

@@ -1,8 +1,7 @@
 $(document).ready(function() {
 
-  // Get started!
-
-});
+ 
+}); //document.ready
 
 
 //functions for modal login
@@ -28,6 +27,13 @@ $('.modal-btn-back').on('click', function(){
 $('.modal-trigger').leanModal({overlay: 0.6, closeButton: '.modal-close'});
 
 //password validation
+$('#pwd-reg').on('keyup',function(){
+  var password = $('#pwd-reg').val();
+  if(passwordLength(password) === true && includesSymbol(password) === true && includesNumber(password) === true && includesLowercase(password) === true && includesUppercase(password) === true && includesIllegal(password) === false){
+    $('#pwd-reg').addClass('valid');
+  }
+});
+
 //visual validation for password
 $('#pwd-reg').on('keyup blur',function(){
   var password = $('#pwd-reg').val();
@@ -42,7 +48,7 @@ $('#pwd-reg').on('keyup blur',function(){
     $('#pwd-length-arrow').addClass('hidden');
     $('#pwd-length-check').removeClass('hidden');
   }
-  if(!includesSymbol(password)){
+  if(!includesSymbol(password) && includesIllegal(password)){
     $('#pwd-reg').addClass('invalid');
     $('#pwd-symbol').addClass('invalid');
     $('#pwd-symbol-arrow').removeClass('hidden');
@@ -94,17 +100,28 @@ $('#pwd-reg').on('keyup blur',function(){
 $('#confirm-pwd').on('keyup',function(){
   var firstPwd = $('#pwd-reg').val();
   var secondPwd = $('#confirm-pwd').val();
-  console.log(firstPwd);
-  console.log(secondPwd);
-  console.log(firstPwd===secondPwd);
+  // console.log(firstPwd);
+  // console.log(secondPwd);
+  // console.log(firstPwd===secondPwd);
   if (firstPwd !== undefined && firstPwd !== secondPwd){
     $('#confirm-pwd').addClass('invalid');
   }else{
     $('#confirm-pwd').removeClass('invalid');
+    $('#confirm-pwd').addClass('valid');    
   }
 });
 
-//overall form validation
+ //registration form validation
+  $('input').change(function(){
+    // console.log('onchange function fired')
+    // console.log('#name is valid: ' + $('#name')[0].checkValidity());
+    // console.log('#email-reg is valid: ' + $('#email-reg')[0].checkValidity());
+    // console.log('#pwd-reg is valid: ' + $('#pwd-reg').hasClass('valid'));
+    // console.log('#confirm-pwd is valid: ' + $('#confirm-pwd').hasClass('valid'));
+    if($('#name')[0].checkValidity() === true && $('#email-reg')[0].checkValidity() === true && $('#pwd-reg').hasClass('valid') && $('#confirm-pwd').hasClass('valid')){
+      $('#modal-btn-register').removeAttr('disabled');
+    }
+  });//input.onChange
 
 
 function passwordLength(password){
