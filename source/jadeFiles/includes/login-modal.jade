@@ -18,7 +18,7 @@
     .email-login
       form
         label(for="email-login") Enter your email
-        input(type="email" name="email" id="email-login" autocomplete="email" placeholder="john@domain.com" required)
+        input.invalid(type="email" name="email" id="email-login" autocomplete="email" placeholder="john@domain.com" required)
 
         label(for="pwd-login") Choose a password
         input(type="password" id="pwd-login" required)
@@ -36,19 +36,19 @@
         input(type="email" name="email" id="email-reg" placeholder="john@doamin.com" autocomplete="email" required)
 
         label(for="pwd-reg") Choose a password (required)
-        input(type="password" id="psw-reg" required)
+        input(type="password" id="pwd-reg" required)
 
         label(for="confirm-pwd") Confirm your password 
-        input(type="password" id="confirm-psw" required)
+        input(type="password" id="confirm-pwd" required)
 
       .instructions
         p Your password must:
         ul
-          li be at least 8 characters long
-          li= 'contain a symbol (!,@,#,$,%,^,&,*)'
-          li include a number
-          li include an uppercase letter
-          li include a lowercase letter
+          li(id="pwd-lenght") be at least 8 characters long
+          li(id="pwd-symbol")= 'contain a symbol (!,@,#,$,%,^,&,*)'
+          li(id="pwd-number") include a number
+          li(id="pwd-uppercase") include an uppercase letter
+          li(id="pwd-uppercase") include a lowercase letter
 
       .footer-wrap
         a.button.modal-btn-back Back
