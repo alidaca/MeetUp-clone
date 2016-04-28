@@ -18,7 +18,7 @@
     .email-login
       form
         label(for="email-login") Enter your email
-        input.invalid(type="email" name="email" id="email-login" autocomplete="email" placeholder="john@domain.com" required)
+        input.invalid(type="email" name="email" id="email-login" autocomplete="email" placeholder="john@domain.com" required autofocus)
 
         label(for="pwd-login") Choose a password
         input(type="password" id="pwd-login" required)
@@ -30,7 +30,7 @@
     .signup-form
       form
         label(for="name") What's your name? (required)
-        input(type="text" name="name" id="name" placeholder="John Smith" autocomplete="name" required)
+        input(type="text" name="name" id="name" placeholder="John Smith" autocomplete="name" required autofocus)
 
         label(for="email-reg") Enter your email (required)
         input(type="email" name="email" id="email-reg" placeholder="john@doamin.com" autocomplete="email" required)
@@ -43,12 +43,22 @@
 
       .instructions
         p Your password must:
-        ul
-          li(id="pwd-lenght") be at least 8 characters long
+        ul(class="fa-ul")
+          li(id="pwd-length") be at least 8 characters long 
+            i(id="pwd-length-arrow" class="fa-li fa fa-angle-right")
+            i(id="pwd-length-check" class="fa-li fa fa-check-circle-o hidden" aria-hidden="true")
           li(id="pwd-symbol")= 'contain a symbol (!,@,#,$,%,^,&,*)'
+            i(id="pwd-symbol-arrow" class="fa-li fa fa-angle-right")
+            i(id="pwd-symbol-check" class="fa-li fa fa-check-circle-o hidden" aria-hidden="true")
           li(id="pwd-number") include a number
+            i(id="pwd-number-arrow" class="fa-li fa fa-angle-right")
+            i(id="pwd-number-check" class="fa-li fa fa-check-circle-o hidden" aria-hidden="true")
           li(id="pwd-uppercase") include an uppercase letter
-          li(id="pwd-uppercase") include a lowercase letter
+            i(id="pwd-uppercase-arrow" class="fa-li fa fa-angle-right")
+            i(id="pwd-uppercase-check" class="fa-li fa fa-check-circle-o hidden" aria-hidden="true")
+          li(id="pwd-lowercase") include a lowercase letter
+            i(id="pwd-lowercase-arrow" class="fa-li fa fa-angle-right")
+            i(id="pwd-lowercase-check" class="fa-li fa fa-check-circle-o hidden" aria-hidden="true")
 
       .footer-wrap
         a.button.modal-btn-back Back

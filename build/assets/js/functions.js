@@ -28,7 +28,57 @@ $('.modal-btn-back').on('click', function(){
 $('.modal-trigger').leanModal({overlay: 0.6, closeButton: '.modal-close'});
 
 //password validation
+//visual validation if password is valid
+$('#pwd-reg').on('keyup',function(){
+  var password = $('#pwd-reg').val();
+  if(!passwordLength(password)){
+    $('#pwd-reg').addClass('invalid');
+    $('#pwd-length').addClass('invalid');
+  }else{
+    $('#pwd-length').removeClass('invalid');
+    $('#pwd-reg').removeClass('invalid');
+    $('#pwd-length-arrow').addClass('hidden');
+    $('#pwd-length-check').removeClass('hidden');
+  }
+  if(!includesSymbol(password)){
+    $('#pwd-reg').addClass('invalid');
+    $('#pwd-symbol').addClass('invalid');
+  }else{
+    $('#pwd-symbol').removeClass('invalid');
+    $('#pwd-reg').removeClass('invalid');
+    $('#pwd-symbol-arrow').addClass('hidden');
+    $('#pwd-symbol-check').removeClass('hidden');
+  }
+  if(!includesNumber(password)){
+    $('#pwd-reg').addClass('invalid');
+    $('#pwd-number').addClass('invalid');
+  }else{
+    $('#pwd-number').removeClass('invalid');
+    $('#pwd-reg').removeClass('invalid');
+    $('#pwd-number-arrow').addClass('hidden');
+    $('#pwd-number-check').removeClass('hidden');
+  }
+  if(!includesLowercase(password)){
+    $('#pwd-reg').addClass('invalid');
+    $('#pwd-lowercase').addClass('invalid');
+  }else{
+    $('#pwd-lowercase').removeClass('invalid');
+    $('#pwd-reg').removeClass('invalid');
+    $('#pwd-lowercase-arrow').addClass('hidden');
+    $('#pwd-lowercase-check').removeClass('hidden');
+  }
+  if(!includesUppercase(password)){
+    $('#pwd-reg').addClass('invalid');
+    $('#pwd-uppercase').addClass('invalid');
+  }else{
+    $('#pwd-uppercase').removeClass('invalid');
+    $('#pwd-reg').removeClass('invalid');
+    $('#pwd-uppercase-arrow').addClass('hidden');
+    $('#pwd-uppercase-check').removeClass('hidden');
+  }
+});
 
+//check if password is confirmed correctly
 $('#confirm-pwd').on('keyup',function(){
   var firstPwd = $('#pwd-reg').val();
   var secondPwd = $('#confirm-pwd').val();
