@@ -51,7 +51,8 @@
     padding: 20px
     text-align: left
 
-    .button
+    .button,
+    input[type="submit"]
       width: 100%
       text-align: left
       margin: 5px 0 10px 0
@@ -61,18 +62,20 @@
 
     .main-login 
       text-align: center
-
+      .button i
+        font-style: normal
+        margin-right: 10px
     .footer-wrap
       display: flex
 
-      .button
+      .button,
         text-align: center
+        margin-right: 5px
 
-        &:first-of-type
-          margin-right: 5px
+      input[type="submit"]
+        text-align: center
+        margin-left: 5px
 
-        &:last-of-type
-          margin-left: 5px
     .email-login
       display: none
 
@@ -108,3 +111,4 @@
   width: 100%
   background: #000
   display: none
+

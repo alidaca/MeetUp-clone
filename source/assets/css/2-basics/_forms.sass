@@ -1,4 +1,10 @@
-input
+input[type="text"],
+input[type="textarea"],
+input[type="email"],
+input[type="password"],
+input[type="text"]:valid,
+input[type="textarea"]:valid,
+input[type="email"]:valid
   display: block
   margin-bottom: 10px
   background-color: $light-bg
@@ -6,10 +12,17 @@ input
   padding: 5px
   border-radius: 10px
 
-input:focus
+input[type="text"]:focus,
+input[type="textarea"]:focus,
+input[type="email"]:focus
   outline-color: $accent1
+  background-color: $light-bg
+  border: 1px solid $accent2
 
-input.invalid
+input.invalid,
+input[type="text"]:focus:required:invalid,
+input[type="textarea"]:focus:required:invalid,
+input[type="email"]:focus:required:invalid
   border: 1px solid $red
   background-color: $light-red
 
