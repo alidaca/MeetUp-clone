@@ -302,7 +302,13 @@ input[type="button"] {
     outline: 0;
     background-color: #C8F9EE; }
 
-input {
+input[type="text"],
+input[type="textarea"],
+input[type="email"],
+input[type="password"],
+input[type="text"]:valid,
+input[type="textarea"]:valid,
+input[type="email"]:valid {
   display: block;
   margin-bottom: 10px;
   background-color: #C7DBD7;
@@ -310,10 +316,17 @@ input {
   padding: 5px;
   border-radius: 10px; }
 
-input:focus {
-  outline-color: #C8F9EE; }
+input[type="text"]:focus,
+input[type="textarea"]:focus,
+input[type="email"]:focus {
+  outline-color: #C8F9EE;
+  background-color: #C7DBD7;
+  border: 1px solid #01614B; }
 
-input.invalid {
+input.invalid,
+input[type="text"]:focus:required:invalid,
+input[type="textarea"]:focus:required:invalid,
+input[type="email"]:focus:required:invalid {
   border: 1px solid #8B0303;
   background-color: #fedbdb; }
 
@@ -377,7 +390,8 @@ input.invalid:focus {
   .login-modal-wrap .modal-body {
     padding: 20px;
     text-align: left; }
-    .login-modal-wrap .modal-body .button {
+    .login-modal-wrap .modal-body .button,
+    .login-modal-wrap .modal-body input[type="submit"] {
       width: 100%;
       text-align: left;
       margin: 5px 0 10px 0; }
@@ -385,15 +399,18 @@ input.invalid:focus {
       font-size: 18px; }
     .login-modal-wrap .modal-body .main-login {
       text-align: center; }
+      .login-modal-wrap .modal-body .main-login .button i {
+        font-style: normal;
+        margin-right: 10px; }
     .login-modal-wrap .modal-body .footer-wrap {
       display: -ms-flexbox;
       display: flex; }
       .login-modal-wrap .modal-body .footer-wrap .button {
-        text-align: center; }
-        .login-modal-wrap .modal-body .footer-wrap .button:first-of-type {
-          margin-right: 5px; }
-        .login-modal-wrap .modal-body .footer-wrap .button:last-of-type {
-          margin-left: 5px; }
+        text-align: center;
+        margin-right: 5px; }
+      .login-modal-wrap .modal-body .footer-wrap input[type="submit"] {
+        text-align: center;
+        margin-left: 5px; }
     .login-modal-wrap .modal-body .email-login {
       display: none; }
     .login-modal-wrap .modal-body .signup-form {

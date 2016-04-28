@@ -28,12 +28,14 @@ $('.modal-btn-back').on('click', function(){
 $('.modal-trigger').leanModal({overlay: 0.6, closeButton: '.modal-close'});
 
 //password validation
-//visual validation if password is valid
-$('#pwd-reg').on('keyup',function(){
+//visual validation for password
+$('#pwd-reg').on('keyup blur',function(){
   var password = $('#pwd-reg').val();
   if(!passwordLength(password)){
     $('#pwd-reg').addClass('invalid');
     $('#pwd-length').addClass('invalid');
+    $('#pwd-length-arrow').removeClass('hidden');
+    $('#pwd-length-check').addClass('hidden');
   }else{
     $('#pwd-length').removeClass('invalid');
     $('#pwd-reg').removeClass('invalid');
@@ -43,6 +45,8 @@ $('#pwd-reg').on('keyup',function(){
   if(!includesSymbol(password)){
     $('#pwd-reg').addClass('invalid');
     $('#pwd-symbol').addClass('invalid');
+    $('#pwd-symbol-arrow').removeClass('hidden');
+    $('#pwd-symbol-check').addClass('hidden');
   }else{
     $('#pwd-symbol').removeClass('invalid');
     $('#pwd-reg').removeClass('invalid');
@@ -52,6 +56,8 @@ $('#pwd-reg').on('keyup',function(){
   if(!includesNumber(password)){
     $('#pwd-reg').addClass('invalid');
     $('#pwd-number').addClass('invalid');
+    $('#pwd-number-arrow').removeClass('hidden');
+    $('#pwd-number-check').addClass('hidden');
   }else{
     $('#pwd-number').removeClass('invalid');
     $('#pwd-reg').removeClass('invalid');
@@ -61,6 +67,8 @@ $('#pwd-reg').on('keyup',function(){
   if(!includesLowercase(password)){
     $('#pwd-reg').addClass('invalid');
     $('#pwd-lowercase').addClass('invalid');
+    $('#pwd-lowercase-arrow').removeClass('hidden');
+    $('#pwd-lowercase-check').addClass('hidden');
   }else{
     $('#pwd-lowercase').removeClass('invalid');
     $('#pwd-reg').removeClass('invalid');
@@ -70,6 +78,8 @@ $('#pwd-reg').on('keyup',function(){
   if(!includesUppercase(password)){
     $('#pwd-reg').addClass('invalid');
     $('#pwd-uppercase').addClass('invalid');
+    $('#pwd-uppercase-arrow').removeClass('hidden');
+    $('#pwd-uppercase-check').addClass('hidden');
   }else{
     $('#pwd-uppercase').removeClass('invalid');
     $('#pwd-reg').removeClass('invalid');
@@ -78,6 +88,8 @@ $('#pwd-reg').on('keyup',function(){
   }
 });
 
+
+
 //check if password is confirmed correctly
 $('#confirm-pwd').on('keyup',function(){
   var firstPwd = $('#pwd-reg').val();
@@ -85,12 +97,15 @@ $('#confirm-pwd').on('keyup',function(){
   console.log(firstPwd);
   console.log(secondPwd);
   console.log(firstPwd===secondPwd);
-  if (firstPwd !== secondPwd){
+  if (firstPwd !== undefined && firstPwd !== secondPwd){
     $('#confirm-pwd').addClass('invalid');
   }else{
     $('#confirm-pwd').removeClass('invalid');
   }
 });
+
+//overall form validation
+
 
 function passwordLength(password){
   var psw = password;
