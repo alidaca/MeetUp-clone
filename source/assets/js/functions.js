@@ -61,176 +61,188 @@ $('.modal-trigger').leanModal({overlay: 0.6, closeButton: '.modal-close'});
 
 })();//modal main login
 
-//functions for modal login
-// $('#modal-btn-login').on('click', function(){
-//   $('.main-login').hide();
-//   $('.email-login').show();
-//   $('.modal-title').text('Login with your email');
-// });
+//REGISTRATION FORM
+(function(){
+  var regForm = {
+    init: function(){
+      this.cacheDom();
+      this.bindEvents();
+    },
+    cacheDom: function(){
+      this.$signup = $('.signup-form');
+      //inputs for signup-form
+      this.$inputName = this.$signup.find('#name');
+      this.$inputEmail = this.$signup.find('#email-reg');
+      this.$inputPwd = this.$signup.find('#pwd-reg');
+      this.$confirmPwd = this.$signup.find('#confirm-pwd');
+      //password instructions
+      this.$promptLength = this.$signup.find('#pwd-length');
+      this.$promptSymbol = this.$signup.find('#pwd-symbol');
+      this.$promptNumber = this.$signup.find('#pwd-number');
+      this.$promptLowercase = this.$signup.find('#pwd-lowercase');
+      this.$promptUppercase = this.$signup.find('#pwd-uppercase');
+    },
+    bindEvents: function(){
+      this.$inputPwd.on('keyup blur',this.$inputPwd,this.validatePwd.bind(this));
+    },
+    validatePwd: function(){
+      // console.log('validatePwd fired');
+      var password = this.$inputPwd.val();
+      console.log(password);
+      
+      if(!this.validLength(password)){
+        this.renderValidation(this.$inputPwd,this.$promptLength,'invalid');
+        console.log('password is invalid');
+        console.log('renderValidation params are: '+ this.$inputPwd +' '+ this.$promptLength +' '+'invalid');
+      }else{
+        this.renderValidation(this.$inputPwd,this.$promptLength, 'valid');
+        console.log('password is valid');
+        console.log('renderValidation params are: '+ this.$inputPwd +' '+ this.$promptLength +' '+'invalid');
+      }
 
-// $('#modal-btn-signUp').on('click', function(){
-//   $('.main-login').hide();
-//   $('.signup-form').show();
-//   $('.modal-title').text('Register');
-// });
+      if(!this.includesNumber(password)){
+        this.renderValidation(this.$inputPwd,this.$promptNumber,'invalid');
+        console.log('password is invalid');
+        console.log('renderValidation params are: '+ this.$inputPwd +' '+ this.$promptNumber +' '+'invalid');
+      }else{
+        this.renderValidation(this.$inputPwd,this.$promptNumber, 'valid');
+        console.log('password is valid');
+        console.log('renderValidation params are: '+ this.$inputPwd +' '+ this.$promptNumber +' '+'invalid');
+      }
 
-// $('.modal-btn-back').on('click', function(){
-//   $('.email-login').hide();
-//   $('.signup-form').hide();
-//   $('.main-login').show();
-//   $('.modal-title').text('Login to create an event');
-// });
+      if(!this.includesSymbol(password) || !this.noIllegal(password)){
+        this.renderValidation(this.$inputPwd,this.$promptSymbol,'invalid');
+        console.log('password is invalid');
+        console.log('renderValidation params are: '+ this.$inputPwd +' '+ this.$promptSymbol +' '+'invalid');
+      }else{
+        this.renderValidation(this.$inputPwd,this.$promptSymbol, 'valid');
+        console.log('password is valid');
+        console.log('renderValidation params are: '+ this.$inputPwd +' '+ this.$promptSymbol +' '+'invalid');
+      }
 
+      if(!this.includesLowercase(password)){
+        this.renderValidation(this.$inputPwd,this.$promptLowercase,'invalid');
+        console.log('password is invalid');
+        console.log('renderValidation params are: '+ this.$inputPwd +' '+ this.$promptLowercase +' '+'invalid');
+      }else{
+        this.renderValidation(this.$inputPwd,this.$promptLowercase, 'valid');
+        console.log('password is valid');
+        console.log('renderValidation params are: '+ this.$inputPwd +' '+ this.$promptLowercase +' '+'invalid');
+      }
 
+      if(!this.includesUppercase(password)){
+        this.renderValidation(this.$inputPwd,this.$promptUppercase,'invalid');
+        console.log('password is invalid');
+        console.log('renderValidation params are: '+ this.$inputPwd +' '+ this.$promptUppercase +' '+'invalid');
+      }else{
+        this.renderValidation(this.$inputPwd,this.$promptUppercase, 'valid');
+        console.log('password is valid');
+        console.log('renderValidation params are: '+ this.$inputPwd +' '+ this.$promptUppercase +' '+'invalid');
+      }
 
-//password validation
-$('#pwd-reg').on('keyup',function(){
-  var password = $('#pwd-reg').val();
-  if(passwordLength(password) === true && includesSymbol(password) === true && includesNumber(password) === true && includesLowercase(password) === true && includesUppercase(password) === true && includesIllegal(password) === false){
-    $('#pwd-reg').addClass('valid');
-  }
-});
+    },
+    validLength: function(password){
+      if (password.length >= 8){
+        return true;
+      }else{
+        return false;
+      }
+    },
+    includesNumber: function(password){
+      if(password.match(/\d/g)){
+        return true;
+      }else{
+        return false;
+      }
+    },
+    includesSymbol: function(password){
+      console.log('checking symbols');
+      if (password.match(/[\!\@\#\$\%\^\&\*]/g)){
+        return true;
+      }else{
+        return false;
+      }
+    },
+    includesLowercase: function(password){
+      console.log('checking lowercase');
+      if(password.match(/[a-z]/g)){
+        return true;
+      }else{
+        return false;
+      }
+    },
 
-//visual validation for password
-$('#pwd-reg').on('keyup blur',function(){
-  var password = $('#pwd-reg').val();
-  if(!passwordLength(password)){
-    $('#pwd-reg').addClass('invalid');
-    $('#pwd-length').addClass('invalid');
-    $('#pwd-length-arrow').removeClass('hidden');
-    $('#pwd-length-check').addClass('hidden');
-  }else{
-    $('#pwd-length').removeClass('invalid');
-    $('#pwd-reg').removeClass('invalid');
-    $('#pwd-length-arrow').addClass('hidden');
-    $('#pwd-length-check').removeClass('hidden');
-  }
-  if(!includesSymbol(password) && includesIllegal(password)){
-    $('#pwd-reg').addClass('invalid');
-    $('#pwd-symbol').addClass('invalid');
-    $('#pwd-symbol-arrow').removeClass('hidden');
-    $('#pwd-symbol-check').addClass('hidden');
-  }else{
-    $('#pwd-symbol').removeClass('invalid');
-    $('#pwd-reg').removeClass('invalid');
-    $('#pwd-symbol-arrow').addClass('hidden');
-    $('#pwd-symbol-check').removeClass('hidden');
-  }
-  if(!includesNumber(password)){
-    $('#pwd-reg').addClass('invalid');
-    $('#pwd-number').addClass('invalid');
-    $('#pwd-number-arrow').removeClass('hidden');
-    $('#pwd-number-check').addClass('hidden');
-  }else{
-    $('#pwd-number').removeClass('invalid');
-    $('#pwd-reg').removeClass('invalid');
-    $('#pwd-number-arrow').addClass('hidden');
-    $('#pwd-number-check').removeClass('hidden');
-  }
-  if(!includesLowercase(password)){
-    $('#pwd-reg').addClass('invalid');
-    $('#pwd-lowercase').addClass('invalid');
-    $('#pwd-lowercase-arrow').removeClass('hidden');
-    $('#pwd-lowercase-check').addClass('hidden');
-  }else{
-    $('#pwd-lowercase').removeClass('invalid');
-    $('#pwd-reg').removeClass('invalid');
-    $('#pwd-lowercase-arrow').addClass('hidden');
-    $('#pwd-lowercase-check').removeClass('hidden');
-  }
-  if(!includesUppercase(password)){
-    $('#pwd-reg').addClass('invalid');
-    $('#pwd-uppercase').addClass('invalid');
-    $('#pwd-uppercase-arrow').removeClass('hidden');
-    $('#pwd-uppercase-check').addClass('hidden');
-  }else{
-    $('#pwd-uppercase').removeClass('invalid');
-    $('#pwd-reg').removeClass('invalid');
-    $('#pwd-uppercase-arrow').addClass('hidden');
-    $('#pwd-uppercase-check').removeClass('hidden');
-  }
-});
+    includesUppercase: function(password){
+      console.log('checking uppercase');
+      if(password.match(/[A-Z]/g)){
+        return true;
+      }else{
+        return false;
+      }
+    },
 
-
-
-//check if password is confirmed correctly
-$('#confirm-pwd').on('keyup',function(){
-  var firstPwd = $('#pwd-reg').val();
-  var secondPwd = $('#confirm-pwd').val();
-  // console.log(firstPwd);
-  // console.log(secondPwd);
-  // console.log(firstPwd===secondPwd);
-  if (firstPwd !== undefined && firstPwd !== secondPwd){
-    $('#confirm-pwd').addClass('invalid');
-  }else{
-    $('#confirm-pwd').removeClass('invalid');
-    $('#confirm-pwd').addClass('valid');    
-  }
-});
-
- //registration form validation
-  $('input').change(function(){
-    // console.log('onchange function fired')
-    // console.log('#name is valid: ' + $('#name')[0].checkValidity());
-    // console.log('#email-reg is valid: ' + $('#email-reg')[0].checkValidity());
-    // console.log('#pwd-reg is valid: ' + $('#pwd-reg').hasClass('valid'));
-    // console.log('#confirm-pwd is valid: ' + $('#confirm-pwd').hasClass('valid'));
-    if($('#name')[0].checkValidity() === true && $('#email-reg')[0].checkValidity() === true && $('#pwd-reg').hasClass('valid') && $('#confirm-pwd').hasClass('valid')){
-      $('#modal-btn-register').removeAttr('disabled');
+    noIllegal: function(password){
+      console.log('checking illegal chars');
+      if(password.match(/[^A-z0-9\!\@\#\$\%\^\&\*]/g)){
+        return false;
+      }else{
+        return true;
+      }
+    },
+    renderValidation: function(element,prompt,value){
+      console.log('renderValidation fired');
+      console.log('params are: '+ element + ' '+ prompt +' '+ value);
+      if(value === "invalid"){
+        element.removeClass('valid');
+        element.addClass('invalid');
+        prompt.removeClass('valid');
+        prompt.addClass('invalid');
+        prompt.children('check').addClass('hidden');
+        prompt.children('arrow').removeClass('hidden');
+      }else if(value === "valid"){
+        element.removeClass('invalid');
+        element.addClass('valid');
+        prompt.removeClass('invalid');
+        prompt.addClass('valid')
+        prompt.children('arrow').addClass('hidden');
+        prompt.children('check').removeClass('hidden');
+      }
     }
-  });//input.onChange
+
+  }//regForm{}
+
+  regForm.init();
+})();//regForm Module
 
 
-function passwordLength(password){
-  var psw = password;
-  if (psw.length >= 8){
-    return true;
-  }else{
-    return false;
-  }
-}
 
-function includesSymbol(password){
-  var psw = password;
-  if (psw.match(/[\!\@\#\$\%\^\&\*]/g)){
-    return true;
-  }else{
-    return false;
-  }
-}
 
-function includesNumber(password){
-  var psw = password;
-  if(psw.match(/\d/g)){
-    return true;
-  }else{
-    return false;
-  }
-}
 
-function includesLowercase(password){
-  var psw = password;
-  if(psw.match(/[a-z]/g)){
-    return true;
-  }else{
-    return false;
-  }
-}
+// password Confirmation
+// $('#confirm-pwd').on('keyup',function(){
+//   var firstPwd = $('#pwd-reg').val();
+//   var secondPwd = $('#confirm-pwd').val();
+//   // console.log(firstPwd);
+//   // console.log(secondPwd);
+//   // console.log(firstPwd===secondPwd);
+//   if (firstPwd !== undefined && firstPwd !== secondPwd){
+//     $('#confirm-pwd').addClass('invalid');
+//   }else{
+//     $('#confirm-pwd').removeClass('invalid');
+//     $('#confirm-pwd').addClass('valid');    
+//   }
+// });
 
-function includesUppercase(password){
-  var psw = password;
-  if(psw.match(/[A-Z]/g)){
-    return true;
-  }else{
-    return false;
-  }
-}
+//  //Overall form validation
+//   $('input').change(function(){
+//     // console.log('onchange function fired')
+//     // console.log('#name is valid: ' + $('#name')[0].checkValidity());
+//     // console.log('#email-reg is valid: ' + $('#email-reg')[0].checkValidity());
+//     // console.log('#pwd-reg is valid: ' + $('#pwd-reg').hasClass('valid'));
+//     // console.log('#confirm-pwd is valid: ' + $('#confirm-pwd').hasClass('valid'));
+//     if($('#name')[0].checkValidity() === true && $('#email-reg')[0].checkValidity() === true && $('#pwd-reg').hasClass('valid') && $('#confirm-pwd').hasClass('valid')){
+//       $('#modal-btn-register').removeAttr('disabled');
+//     }
+//   });//input.onChange
 
-function includesIllegal(password){
-  var psw = password;
-  if(psw.match(/[^A-z0-9\!\@\#\$\%\^\&\*]/g)){
-    return true;
-  }else{
-    return false;
-  }
-}
+
