@@ -1,30 +1,87 @@
-$(document).ready(function() {
-
- 
-}); //document.ready
-
-
-//functions for modal login
-$('#modal-btn-login').on('click', function(){
-  $('.main-login').hide();
-  $('.email-login').show();
-  $('.modal-title').text('Login with your email');
-});
-
-$('#modal-btn-signUp').on('click', function(){
-  $('.main-login').hide();
-  $('.signup-form').show();
-  $('.modal-title').text('Register');
-});
-
-$('.modal-btn-back').on('click', function(){
-  $('.email-login').hide();
-  $('.signup-form').hide();
-  $('.main-login').show();
-  $('.modal-title').text('Login to create an event');
-});
+//INDEX
 
 $('.modal-trigger').leanModal({overlay: 0.6, closeButton: '.modal-close'});
+
+
+//MODAL MAIN LOGIN
+(function(){
+
+  var mainLogin = {
+    init: function(){
+      this.cacheDom();
+      this.bindEvents();
+    },
+
+    cacheDom: function(){
+      //container
+      this.$el = $('.modal-body');
+      this.$header = this.$el.prev();
+      this.$modalTitle = this.$header.find('.modal-title');
+      this.$closeBtn = this.$header.find('modal-close');
+      //forms
+      this.$mainLogin = this.$el.find('.main-login');
+      this.$emailLogin = this.$el.find('.email-login');
+      this.$signupForm = this.$el.find('.signup-form');
+      //buttons
+      this.$loginBtn = this.$el.find('#modal-btn-login');
+      this.$signupBtn = this.$el.find('#modal-btn-signUp');
+      this.$backBtn = this.$el.find('.modal-btn-back');
+      this.$closeBtn = this.$el.find('.modal-close');
+    },
+
+    bindEvents: function(){
+      this.$loginBtn.on('click', this.showEmailLogin.bind(this));
+      this.$signupBtn.on('click', this.showSignupForm.bind(this));
+      this.$backBtn.on('click', this.showMainLogin.bind(this));
+      this.$closeBtn.on('click', this.showMainLogin.bind(this));
+    },
+
+    showEmailLogin: function(){
+      this.$mainLogin.hide();
+      this.$emailLogin.show();
+      this.$modalTitle.text('Login with your email');
+    },
+
+    showMainLogin: function(){
+      this.$emailLogin.hide();
+      this.$signupForm.hide();
+      this.$mainLogin.show();
+      this.$modalTitle.text('Login to create an event');
+    },
+
+    showSignupForm: function(){
+      this.$mainLogin.hide();
+      this.$signupForm.show();
+      this.$modalTitle.text('Register');
+    },
+
+  }; //mainLogin{}
+
+  mainLogin.init();
+
+})();//modal main login
+
+//functions for modal login
+// $('#modal-btn-login').on('click', function(){
+//   $('.main-login').hide();
+//   $('.email-login').show();
+//   $('.modal-title').text('Login with your email');
+// });
+
+// $('#modal-btn-signUp').on('click', function(){
+//   $('.main-login').hide();
+//   $('.signup-form').show();
+//   $('.modal-title').text('Register');
+// });
+
+// $('.modal-btn-back').on('click', function(){
+//   $('.email-login').hide();
+//   $('.signup-form').hide();
+//   $('.main-login').show();
+//   $('.modal-title').text('Login to create an event');
+// });
+
+
 
 //password validation
 $('#pwd-reg').on('keyup',function(){
