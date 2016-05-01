@@ -75,6 +75,7 @@ $('.modal-trigger').leanModal({overlay: 0.6, closeButton: '.modal-close'});
       this.$inputEmail = this.$signup.find('#email-reg');
       this.$inputPwd = this.$signup.find('#pwd-reg');
       this.$confirmPwd = this.$signup.find('#confirm-pwd');
+      this.$input = this.$signup.find('input');
       //password instructions
       this.$promptLength = this.$signup.find('#pwd-length');
       this.$promptSymbol = this.$signup.find('#pwd-symbol');
@@ -84,6 +85,7 @@ $('.modal-trigger').leanModal({overlay: 0.6, closeButton: '.modal-close'});
     },
     bindEvents: function(){
       this.$inputPwd.on('keyup blur',this.$inputPwd,this.validatePwd.bind(this));
+      this.$confirmPwd.on('keyup',this.matchPwd.bind(this));
     },
     validatePwd: function(){
       // console.log('validatePwd fired');
@@ -91,55 +93,68 @@ $('.modal-trigger').leanModal({overlay: 0.6, closeButton: '.modal-close'});
       console.log(password);
       
       if(!this.validLength(password)){
-        this.renderValidation(this.$inputPwd,this.$promptLength,'invalid');
+        this.renderPwdValidation(this.$inputPwd,this.$promptLength,'invalid');
         console.log('password is invalid');
-        console.log('renderValidation params are: '+ this.$inputPwd +' '+ this.$promptLength +' '+'invalid');
+        console.log('renderPwdValidation params are: '+ this.$inputPwd +' '+ this.$promptLength +' '+'invalid');
       }else{
-        this.renderValidation(this.$inputPwd,this.$promptLength, 'valid');
+        this.renderPwdValidation(this.$inputPwd,this.$promptLength, 'valid');
         console.log('password is valid');
-        console.log('renderValidation params are: '+ this.$inputPwd +' '+ this.$promptLength +' '+'invalid');
+        console.log('renderPwdValidation params are: '+ this.$inputPwd +' '+ this.$promptLength +' '+'invalid');
       }
 
       if(!this.includesNumber(password)){
-        this.renderValidation(this.$inputPwd,this.$promptNumber,'invalid');
+        this.renderPwdValidation(this.$inputPwd,this.$promptNumber,'invalid');
         console.log('password is invalid');
-        console.log('renderValidation params are: '+ this.$inputPwd +' '+ this.$promptNumber +' '+'invalid');
+        console.log('renderPwdValidation params are: '+ this.$inputPwd +' '+ this.$promptNumber +' '+'invalid');
       }else{
-        this.renderValidation(this.$inputPwd,this.$promptNumber, 'valid');
+        this.renderPwdValidation(this.$inputPwd,this.$promptNumber, 'valid');
         console.log('password is valid');
-        console.log('renderValidation params are: '+ this.$inputPwd +' '+ this.$promptNumber +' '+'invalid');
+        console.log('renderPwdValidation params are: '+ this.$inputPwd +' '+ this.$promptNumber +' '+'invalid');
       }
 
       if(!this.includesSymbol(password) || !this.noIllegal(password)){
-        this.renderValidation(this.$inputPwd,this.$promptSymbol,'invalid');
+        this.renderPwdValidation(this.$inputPwd,this.$promptSymbol,'invalid');
         console.log('password is invalid');
-        console.log('renderValidation params are: '+ this.$inputPwd +' '+ this.$promptSymbol +' '+'invalid');
+        console.log('renderPwdValidation params are: '+ this.$inputPwd +' '+ this.$promptSymbol +' '+'invalid');
       }else{
-        this.renderValidation(this.$inputPwd,this.$promptSymbol, 'valid');
+        this.renderPwdValidation(this.$inputPwd,this.$promptSymbol, 'valid');
         console.log('password is valid');
-        console.log('renderValidation params are: '+ this.$inputPwd +' '+ this.$promptSymbol +' '+'invalid');
+        console.log('renderPwdValidation params are: '+ this.$inputPwd +' '+ this.$promptSymbol +' '+'invalid');
       }
 
       if(!this.includesLowercase(password)){
-        this.renderValidation(this.$inputPwd,this.$promptLowercase,'invalid');
+        this.renderPwdValidation(this.$inputPwd,this.$promptLowercase,'invalid');
         console.log('password is invalid');
-        console.log('renderValidation params are: '+ this.$inputPwd +' '+ this.$promptLowercase +' '+'invalid');
+        console.log('renderPwdValidation params are: '+ this.$inputPwd +' '+ this.$promptLowercase +' '+'invalid');
       }else{
-        this.renderValidation(this.$inputPwd,this.$promptLowercase, 'valid');
+        this.renderPwdValidation(this.$inputPwd,this.$promptLowercase, 'valid');
         console.log('password is valid');
-        console.log('renderValidation params are: '+ this.$inputPwd +' '+ this.$promptLowercase +' '+'invalid');
+        console.log('renderPwdValidation params are: '+ this.$inputPwd +' '+ this.$promptLowercase +' '+'invalid');
       }
 
       if(!this.includesUppercase(password)){
-        this.renderValidation(this.$inputPwd,this.$promptUppercase,'invalid');
+        this.renderPwdValidation(this.$inputPwd,this.$promptUppercase,'invalid');
         console.log('password is invalid');
-        console.log('renderValidation params are: '+ this.$inputPwd +' '+ this.$promptUppercase +' '+'invalid');
+        console.log('renderPwdValidation params are: '+ this.$inputPwd +' '+ this.$promptUppercase +' '+'invalid');
       }else{
-        this.renderValidation(this.$inputPwd,this.$promptUppercase, 'valid');
+        this.renderPwdValidation(this.$inputPwd,this.$promptUppercase, 'valid');
         console.log('password is valid');
-        console.log('renderValidation params are: '+ this.$inputPwd +' '+ this.$promptUppercase +' '+'invalid');
+        console.log('renderPwdValidation params are: '+ this.$inputPwd +' '+ this.$promptUppercase +' '+'invalid');
       }
 
+      if(this.validLength(password) && this.includesNumber(password) && this.includesSymbol(password) && this.includesLowercase(password) && this.includesUppercase(password) && this.noIllegal(password)){
+        this.markInputPwd('valid');
+      }else{
+        this.markInputPwd('invalid');
+      }
+
+    },
+    matchPwd: function(){
+      if(this.$inputPwd.val() !== undefined && this.$inputPwd.val() === this.$confirmPwd.val()){
+        this.renderConfirmPwdValidation('valid');
+      }else{
+        this.renderConfirmPwdValidation('invalid');
+      }
     },
     validLength: function(password){
       if (password.length >= 8){
@@ -189,23 +204,33 @@ $('.modal-trigger').leanModal({overlay: 0.6, closeButton: '.modal-close'});
         return true;
       }
     },
-    renderValidation: function(element,prompt,value){
-      console.log('renderValidation fired');
+    markInputPwd: function(value){
+      if(value === 'valid'){
+        this.$inputPwd.removeClass('invalid'). addClass('valid');
+      }else if(value === 'invalid'){
+        this.$inputPwd.removeClass('valid').addClass('invalid');
+      }
+    },
+    renderPwdValidation: function(element,prompt,value){
+      console.log('renderPwdValidation fired');
       console.log('params are: '+ element + ' '+ prompt +' '+ value);
       if(value === "invalid"){
-        element.removeClass('valid');
-        element.addClass('invalid');
-        prompt.removeClass('valid');
-        prompt.addClass('invalid');
+        element.removeClass('valid').addClass('invalid');
+        prompt.removeClass('valid').addClass('invalid');
         prompt.children('check').addClass('hidden');
         prompt.children('arrow').removeClass('hidden');
       }else if(value === "valid"){
-        element.removeClass('invalid');
-        element.addClass('valid');
-        prompt.removeClass('invalid');
-        prompt.addClass('valid')
+        element.removeClass('invalid').addClass('valid');
+        prompt.removeClass('invalid').addClass('valid');
         prompt.children('arrow').addClass('hidden');
         prompt.children('check').removeClass('hidden');
+      }
+    },
+    renderConfirmPwdValidation: function(validation){
+      if(validation === 'valid'){
+        this.$confirmPwd.removeClass('invalid').addClass('valid');
+      }else{
+        this.$confirmPwd.removeClass('valid').addClass('invalid');
       }
     }
 
