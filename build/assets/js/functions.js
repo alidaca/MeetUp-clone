@@ -82,10 +82,18 @@ $('.modal-trigger').leanModal({overlay: 0.6, closeButton: '.modal-close'});
       this.$promptNumber = this.$signup.find('#pwd-number');
       this.$promptLowercase = this.$signup.find('#pwd-lowercase');
       this.$promptUppercase = this.$signup.find('#pwd-uppercase');
+      //Buttons
+      this.$regBtn = this.$signup.find('#modal-btn-register');
+      this.$backBtn = this.$signup.find('.modal-btn-back');
+
     },
     bindEvents: function(){
+      //validates password while user types
       this.$inputPwd.on('keyup blur',this.$inputPwd,this.validatePwd.bind(this));
+      //validates confirmation password while user types
       this.$confirmPwd.on('keyup',this.matchPwd.bind(this));
+      //validates entire form and enables registration when valid
+      this.$input.on('keyup', this.validateForm.bind(this));
     },
     validatePwd: function(){
       // console.log('validatePwd fired');
@@ -204,6 +212,15 @@ $('.modal-trigger').leanModal({overlay: 0.6, closeButton: '.modal-close'});
         return true;
       }
     },
+    validateForm: function(){
+      console.log(this.$inputName[0].checkValidity());
+      console.log(this.$inputEmail[0].checkValidity());
+      console.log(this.$inputPwd.hasClass('valid'));
+      console.log(this.$confirmPwd.hasClass('valid'));
+      if(this.$inputName[0].checkValidity() === true && this.$inputEmail[0].checkValidity() === true && this.$inputPwd.hasClass('valid') && this.$confirmPwd.hasClass('valid')){
+        this.enableRegBtn();
+      }
+    },
     markInputPwd: function(value){
       if(value === 'valid'){
         this.$inputPwd.removeClass('invalid'). addClass('valid');
@@ -232,6 +249,9 @@ $('.modal-trigger').leanModal({overlay: 0.6, closeButton: '.modal-close'});
       }else{
         this.$confirmPwd.removeClass('valid').addClass('invalid');
       }
+    },
+    enableRegBtn: function(){
+      this.$regBtn.removeAttr('disabled');
     }
 
   }//regForm{}
@@ -240,34 +260,5 @@ $('.modal-trigger').leanModal({overlay: 0.6, closeButton: '.modal-close'});
 })();//regForm Module
 
 
-
-
-
-// password Confirmation
-// $('#confirm-pwd').on('keyup',function(){
-//   var firstPwd = $('#pwd-reg').val();
-//   var secondPwd = $('#confirm-pwd').val();
-//   // console.log(firstPwd);
-//   // console.log(secondPwd);
-//   // console.log(firstPwd===secondPwd);
-//   if (firstPwd !== undefined && firstPwd !== secondPwd){
-//     $('#confirm-pwd').addClass('invalid');
-//   }else{
-//     $('#confirm-pwd').removeClass('invalid');
-//     $('#confirm-pwd').addClass('valid');    
-//   }
-// });
-
-//  //Overall form validation
-//   $('input').change(function(){
-//     // console.log('onchange function fired')
-//     // console.log('#name is valid: ' + $('#name')[0].checkValidity());
-//     // console.log('#email-reg is valid: ' + $('#email-reg')[0].checkValidity());
-//     // console.log('#pwd-reg is valid: ' + $('#pwd-reg').hasClass('valid'));
-//     // console.log('#confirm-pwd is valid: ' + $('#confirm-pwd').hasClass('valid'));
-//     if($('#name')[0].checkValidity() === true && $('#email-reg')[0].checkValidity() === true && $('#pwd-reg').hasClass('valid') && $('#confirm-pwd').hasClass('valid')){
-//       $('#modal-btn-register').removeAttr('disabled');
-//     }
-//   });//input.onChange
 
 
