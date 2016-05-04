@@ -5,7 +5,7 @@ head
   title MeetApp
   meta(charset="UTF-8")
   meta(name="viewport", content="width=device-width, initial-scale=1")
-  //- Jasmin testing
+  //- Jasmine testing
   //- link(rel="shortcut icon" type="image/png" href="jasmine/lib/jasmine-2.0.0/jasmine_favicon.png")
   //- link(rel="stylesheet" type="text/css" href="jasmine/lib/jasmine-2.0.0/jasmine.css")
   link(rel="shortcut icon", href="/assets/img/favicon.ico")
@@ -18,9 +18,8 @@ body
   include includes/main-home
   include includes/login-modal
 
-  script(src="https://code.jquery.com/jquery-2.2.3.min.js")
-  script(src="/assets/js/jquery.leanModal.min.js")
-  script(src="/assets/js/functions.js")
+  script(data-main="/assets/js/common" src="/assets/js/tools/require.js")
+  script(src="/assets/js/home.js")
   //- Jasmine testing
   //- script(type="text/javascript" src="jasmine/lib/jasmine-2.0.0/jasmine.js")
   //- script(type="text/javascript" src="jasmine/lib/jasmine-2.0.0/jasmine-html.js")

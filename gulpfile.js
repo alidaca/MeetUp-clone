@@ -6,7 +6,7 @@ var prefix      = require('gulp-autoprefixer');
 var cp          = require('child_process');
 var jade        = require('gulp-jade');
 var runSequence = require('run-sequence');
-
+var jshint      = require('gulp-jshint');
 
 
 
@@ -60,7 +60,7 @@ gulp.task('jade', function(){
  **/
 
  gulp.task('javascript', function(){
-   return gulp.src('source/assets/js/*.js')
+   return gulp.src('source/assets/js/**/*.js')
    .pipe(gulp.dest('./build/assets/js'))
    //.pipe(browserSync.reload({stream:true}));;
  });
@@ -75,6 +75,16 @@ gulp.task('jade', function(){
    //.pipe(browserSync.reload({stream:true}));;
  });
 
+   /**
+ * Js linting
+ **/
+
+ gulp.task('jsLint', function(){
+  gulp.src('source/assets/js')
+  .pipe(jshint())
+  .pipe(jshint.reporter());
+ });
+
 
 /**
  * Watch sass files for changes & recompile
@@ -85,7 +95,7 @@ gulp.task('jade', function(){
  gulp.task('watch', function () {
      gulp.watch('source/assets/css/**', ['sass']);
      gulp.watch('source/jadeFiles/**/*.jade', ['jade']);
-     gulp.watch('source/assets/js/*.js', ['javascript']);
+     gulp.watch('source/assets/js/**/*.js', ['jsLint', 'javascript']);
      gulp.watch('source/assets/img/**', ['img']);
      // gulp.watch('build/**/*.*').on('change', browserSync.reload);
      gulp.watch('build/*.html').on('change', browserSync.reload);
