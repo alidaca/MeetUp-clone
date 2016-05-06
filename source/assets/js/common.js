@@ -6,11 +6,15 @@ requirejs.config({
   paths:{
     app: 'app',
     jquery: '//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min',
-    leanModal: 'tools/jquery.leanModal.min'
+    leanModal: 'tools/jquery.leanModal.min',
+    firebase: 'tools/firebase'
     },
   shim:{
     leanModal: {
       deps: ['jquery']
+    },
+    firebase: {
+      exports: 'Firebase'
     }
   }
 });
