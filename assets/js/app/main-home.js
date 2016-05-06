@@ -9,4 +9,8 @@ requirejs(['jquery', 'leanModal'],function($, leanModal){
     modalReg.init();
   });
 
+  requirejs(['app/firebase-auth'], function(firebaseAuth){
+    firebaseAuth.init();
+  });
+
 });
