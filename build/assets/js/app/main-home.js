@@ -13,4 +13,6 @@ requirejs(['jquery', 'leanModal'],function($, leanModal){
     firebaseAuth.init();
   });
 
+  // requirejs(['jquery'],function(modalCtrl){});
+
 });
