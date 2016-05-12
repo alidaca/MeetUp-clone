@@ -1,5 +1,5 @@
 //REGISTRATION FORM
-define(['jquery'], function($){
+define(['jquery', 'app/firebase-auth'], function($,firebaseAuth){
   var regForm = {
     init: function(){
       this.cacheDom();
@@ -8,6 +8,9 @@ define(['jquery'], function($){
     cacheDom: function(){
       this.$signup = $('.signup-form');
       //inputs for signup-form
+      // this.$signupEmail = this.$signupForm.find('#email-reg');
+      // this.$signupPwd = this.$signupForm.find('#pwd-reg');
+      // this.$signupName = this.$signupForm.find('#name');
       this.$inputName = this.$signup.find('#name');
       this.$inputEmail = this.$signup.find('#email-reg');
       this.$inputPwd = this.$signup.find('#pwd-reg');
@@ -20,6 +23,7 @@ define(['jquery'], function($){
       this.$promptLowercase = this.$signup.find('#pwd-lowercase');
       this.$promptUppercase = this.$signup.find('#pwd-uppercase');
       //Buttons
+      // this.$emailSignup = this.$el.find('#modal-btn-register');
       this.$regBtn = this.$signup.find('#modal-btn-register');
       this.$backBtn = this.$signup.find('.modal-btn-back');
 
@@ -31,60 +35,40 @@ define(['jquery'], function($){
       this.$confirmPwd.on('keyup',this.matchPwd.bind(this));
       //validates entire form and enables registration when valid
       this.$input.on('keyup', this.validateForm.bind(this));
+      this.$regBtn.on('click', this.emailSignup.bind(this));
     },
     validatePwd: function(){
       // console.log('validatePwd fired');
       var password = this.$inputPwd.val();
-      console.log(password);
       
       if(!this.validLength(password)){
         this.renderPwdValidation(this.$inputPwd,this.$promptLength,'invalid');
-        console.log('password is invalid');
-        console.log('renderPwdValidation params are: '+ this.$inputPwd +' '+ this.$promptLength +' '+'invalid');
       }else{
         this.renderPwdValidation(this.$inputPwd,this.$promptLength, 'valid');
-        console.log('password is valid');
-        console.log('renderPwdValidation params are: '+ this.$inputPwd +' '+ this.$promptLength +' '+'invalid');
       }
 
       if(!this.includesNumber(password)){
         this.renderPwdValidation(this.$inputPwd,this.$promptNumber,'invalid');
-        console.log('password is invalid');
-        console.log('renderPwdValidation params are: '+ this.$inputPwd +' '+ this.$promptNumber +' '+'invalid');
       }else{
         this.renderPwdValidation(this.$inputPwd,this.$promptNumber, 'valid');
-        console.log('password is valid');
-        console.log('renderPwdValidation params are: '+ this.$inputPwd +' '+ this.$promptNumber +' '+'invalid');
       }
 
       if(!this.includesSymbol(password) || !this.noIllegal(password)){
         this.renderPwdValidation(this.$inputPwd,this.$promptSymbol,'invalid');
-        console.log('password is invalid');
-        console.log('renderPwdValidation params are: '+ this.$inputPwd +' '+ this.$promptSymbol +' '+'invalid');
       }else{
         this.renderPwdValidation(this.$inputPwd,this.$promptSymbol, 'valid');
-        console.log('password is valid');
-        console.log('renderPwdValidation params are: '+ this.$inputPwd +' '+ this.$promptSymbol +' '+'invalid');
       }
 
       if(!this.includesLowercase(password)){
         this.renderPwdValidation(this.$inputPwd,this.$promptLowercase,'invalid');
-        console.log('password is invalid');
-        console.log('renderPwdValidation params are: '+ this.$inputPwd +' '+ this.$promptLowercase +' '+'invalid');
       }else{
         this.renderPwdValidation(this.$inputPwd,this.$promptLowercase, 'valid');
-        console.log('password is valid');
-        console.log('renderPwdValidation params are: '+ this.$inputPwd +' '+ this.$promptLowercase +' '+'invalid');
       }
 
       if(!this.includesUppercase(password)){
         this.renderPwdValidation(this.$inputPwd,this.$promptUppercase,'invalid');
-        console.log('password is invalid');
-        console.log('renderPwdValidation params are: '+ this.$inputPwd +' '+ this.$promptUppercase +' '+'invalid');
       }else{
         this.renderPwdValidation(this.$inputPwd,this.$promptUppercase, 'valid');
-        console.log('password is valid');
-        console.log('renderPwdValidation params are: '+ this.$inputPwd +' '+ this.$promptUppercase +' '+'invalid');
       }
 
       if(this.validLength(password) && this.includesNumber(password) && this.includesSymbol(password) && this.includesLowercase(password) && this.includesUppercase(password) && this.noIllegal(password)){
@@ -116,7 +100,6 @@ define(['jquery'], function($){
       }
     },
     includesSymbol: function(password){
-      console.log('checking symbols');
       if (password.match(/[\!\@\#\$\%\^\&\*]/g)){
         return true;
       }else{
@@ -124,7 +107,6 @@ define(['jquery'], function($){
       }
     },
     includesLowercase: function(password){
-      console.log('checking lowercase');
       if(password.match(/[a-z]/g)){
         return true;
       }else{
@@ -133,7 +115,6 @@ define(['jquery'], function($){
     },
 
     includesUppercase: function(password){
-      console.log('checking uppercase');
       if(password.match(/[A-Z]/g)){
         return true;
       }else{
@@ -142,7 +123,6 @@ define(['jquery'], function($){
     },
 
     noIllegal: function(password){
-      console.log('checking illegal chars');
       if(password.match(/[^A-z0-9\!\@\#\$\%\^\&\*]/g)){
         return false;
       }else{
@@ -150,10 +130,6 @@ define(['jquery'], function($){
       }
     },
     validateForm: function(){
-      console.log(this.$inputName[0].checkValidity());
-      console.log(this.$inputEmail[0].checkValidity());
-      console.log(this.$inputPwd.hasClass('valid'));
-      console.log(this.$confirmPwd.hasClass('valid'));
       if(this.$inputName[0].checkValidity() === true && this.$inputEmail[0].checkValidity() === true && this.$inputPwd.hasClass('valid') && this.$confirmPwd.hasClass('valid')){
         this.enableRegBtn();
       }
@@ -166,8 +142,6 @@ define(['jquery'], function($){
       }
     },
     renderPwdValidation: function(element,prompt,value){
-      console.log('renderPwdValidation fired');
-      console.log('params are: '+ element + ' '+ prompt +' '+ value);
       if(value === "invalid"){
         element.removeClass('valid').addClass('invalid');
         prompt.removeClass('valid').addClass('invalid');
@@ -189,7 +163,34 @@ define(['jquery'], function($){
     },
     enableRegBtn: function(){
       this.$regBtn.removeAttr('disabled');
-    }
+    },
+
+    emailSignup: function(){
+      // e.preventDefault();
+      firebaseAuth.firebaseData.createUser({
+        email: regForm.$inputEmail.val(),
+        password: regForm.$inputPwd.val(),
+        name: regForm.$inputName.val()
+      }, function(err, userData){
+        if (err) {
+          switch (err.code) {
+            case 'EMAIL_TAKEN':
+              console.log('The new user account cannot be created because the email is already in use.');
+              break;
+            case 'INVALID_EMAIL':
+              console.log('The specified email is not a valid email.');
+              break;
+            default:
+              console.log('Error creating user:', err);
+          }
+        }else {
+          console.log('Successfully created user account with uid:', userData.uid);
+          console.log(userData.uid,regForm.$inputName.val(),regForm.$inputEmail.val());
+          firebaseAuth.addUser(userData.uid,regForm.$inputName.val(),regForm.$inputEmail.val(),'password', firebaseAuth.emailLogin(regForm.$inputEmail.val(), regForm.$inputPwd.val() ));
+        }
+      });
+      return false;
+    },
 
   };//regForm{}
 
