@@ -1,0 +1,31 @@
+.container-addEvent
+  .main
+    .breadcrumbs
+      ul
+        li 1
+        li.active 2
+        li 3
+    .event-info
+      form
+        label(for="eventType") What event are you planning?
+        input(type="text" name="eventType" id="eventType" placeholder="John's birthday party" required)
+        .date-and-time
+          .date
+            label(for="eventDate") When will it take place?
+            input(type="date" name="eventDate" id="eventDate" required)
+          .time-start
+            label(for="eventStart") What time will it start?
+            input(type="time" name="eventStart" id="eventStart" required)
+          .time-end
+            label(for="eventEnd") What time will it end? (optional)
+            input(type="time" name="eventEnd" id="eventEnd")
+        label(for="eventLocation") Where will it be?
+        input(type="text" name="eventLocation" id="eventLocation" placeholder="Address" required)
+        label(for="hostName") Who is hosting? (optional)
+        input(type="text" name="hostName" id="hostName")
+        label(for="eventDetails") What should your guest know? (optional)
+        textArea(type="textarea" name="eventDetails" id="eventDetails")
+    .footer
+      .button.btn-light(disabled="disabled") Continue
+        
+

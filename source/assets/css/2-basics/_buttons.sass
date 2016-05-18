@@ -31,9 +31,38 @@ input[type="button"]
 
 .button[disabled="disabled"],
 button[disabled="disabled"],
+.button.btn-light[disabled="disabled"],
 input[type="submit"][disabled="disabled"],
 input[type="reset"][disabled="disabled"],
 input[type="button"][disabled="disabled"]
   background-color: #cdd6d4
   color: #a9aaaa
   cursor: not-allowed
+
+.button.btn-light,
+button.btn-light,
+input[type="submit"].btn-light,
+input[type="reset"].btn-light,
+input[type="button"].btn-light
+  display: inline-block
+  height: 38px
+  padding: 0 30px
+  color: $text1
+  text-align: center
+  font-size: 18px
+  font-style: italic
+  font-weight: 600
+  line-height: 38px
+  text-decoration: none
+  white-space: nowrap
+  background-color: $bg
+  border-radius: 10px
+  border: 1px solid $text1
+  cursor: pointer
+  &:hover,
+  &:active,
+  &:focus
+    color: $text1
+    outline: 0
+    background-color: $accent1
+

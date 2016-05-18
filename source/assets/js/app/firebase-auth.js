@@ -14,14 +14,22 @@ define(['jquery','firebase','app/modal-main', 'app/modal-controls'], function($,
       this.cacheDom();
       this.firebaseData.onAuth(function(authData){
         firebaseAuth.updateHeader(authData);
+        firebaseAuth.updateAddEventBtn(authData);
       });
+      this.bindEvents();
       console.log(firebaseAuth.user);
     },
 
     cacheDom: function(){
-      this.$loginStatus = $('.login');
-      this.$displayLoginStatus = this.$loginStatus.find('a');
-      console.log(modal);
+      this.$header = $('#header');
+      this.$addEventBtn = this.$header.find('.new-event');
+      this.$loginStatus = this.$header.find('#login');
+      this.$displayLoginStatus = this.$loginStatus.find('.caption-login');
+    },
+
+    bindEvents: function(){
+      var ref = this.firebaseData;
+      this.$loginStatus.on('click','#logout',function(){ref.unauth()});
     },
    
     updateHeader: function(authData){
@@ -35,13 +43,20 @@ define(['jquery','firebase','app/modal-main', 'app/modal-controls'], function($,
             firebaseAuth.user.email=(snapshot.val().email);
             firebaseAuth.user.provider=(snapshot.val().provider);
             firebaseAuth.user.id = userId;
-            firebaseAuth.$displayLoginStatus.text('Hi, '+ firebaseAuth.user.name);
+            firebaseAuth.$displayLoginStatus.html('<p> Hi, '+ firebaseAuth.user.name+' <a id="logout">(Logout)</a></p>');
           });
         }else{
-          firebaseAuth.$displayLoginStatus.text('Hi, '+ firebaseAuth.user.name);
-        }
+        firebaseAuth.$displayLoginStatus.html('<p> Hi, '+ firebaseAuth.user.name+' <a id="logout">(Logout)</a></p>');        }
       }else{
-        firebaseAuth.$displayLoginStatus.text('Login or register');
+        firebaseAuth.$displayLoginStatus.html('<a class="modal-trigger" href="#modal"> Login or Register </a>');
+        $('.modal-trigger').leanModal({overlay: 0.6, closeButton: '.modal-close'});
+      }
+    },
+    updateAddEventBtn: function(authData){
+      if (authData){
+        this.$addEventBtn.removeClass('modal-trigger').attr('href','addEvent.html');
+      }else{
+        this.$addEventBtn.addClass('modal-trigger').attr('href','#modal');
       }
     },
     // getEmail: function(authData){

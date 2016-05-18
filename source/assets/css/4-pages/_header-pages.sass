@@ -1,0 +1,52 @@
+.header-wrap-pages
+  background-color: $accent2
+  width: 100%
+  padding-top: 10px
+  .container
+    display: flex
+    justify-content: space-between
+    align-items: center
+    max-width: 1200px
+    margin-left: auto
+    margin-right: auto
+    color: $text2
+
+    .logo-pages
+      // width: 100%
+      text-align: center
+      margin: 0
+      padding: 0
+      h1.show-image
+        width: 210px
+        height: 105px
+        margin: auto auto 20px auto
+        background:
+          image: url(/assets/img/logo.png)
+          repeat: no-repeat
+          position: center
+          size: 90% auto
+    .login-pages
+      order: 0
+      padding: 0
+      color: $text2
+      .media-element-login
+        justify-content: flex-end
+        svg g
+          fill: $bg
+        a, #logout
+          text-decoration: underline
+          font-size: 16px
+          cursor: pointer
+          color: $text2
+          &:hover
+            color: $bg
+        p
+          font-size: 16px
+          margin: 0
+
+
+@media (max-width: 551px)
+  h1.show-image
+    max-width: 210px
+    max-height: 105px
+

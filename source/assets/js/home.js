@@ -1,3 +1,3 @@
 requirejs(['./common'], function (common) {
-    requirejs(['app/main-home']);
+    requirejs(['app/home']);
 });
