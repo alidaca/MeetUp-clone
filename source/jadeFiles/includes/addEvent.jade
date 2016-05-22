@@ -6,9 +6,9 @@
         li.active 2
         li 3
     .event-info
-      form
+      form(id="eventForm")
         label(for="eventType") What event are you planning?
-        input(type="text" name="eventType" id="eventType" placeholder="John's birthday party" required)
+        input(type="text" name="eventType" id="eventType" placeholder="John's birthday party" required autofocus)
         .date-and-time
           .date
             label(for="eventDate") When will it take place?
@@ -26,6 +26,6 @@
         label(for="eventDetails") What should your guest know? (optional)
         textArea(type="textarea" name="eventDetails" id="eventDetails")
     .footer
-      .button.btn-light(disabled="disabled") Continue
+      .button.btn-light(disabled="disabled" id="continueBtn") Continue
         
 
