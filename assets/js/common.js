@@ -7,7 +7,9 @@ requirejs.config({
     app: 'app',
     jquery: '//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min',
     leanModal: 'tools/jquery.leanModal.min',
-    firebase: 'tools/firebase'
+    firebase: 'tools/firebase',
+    googlemaps: 'tools/googlemaps',
+    async: 'tools/async'
     },
   shim:{
     leanModal: {
@@ -15,6 +17,12 @@ requirejs.config({
     },
     firebase: {
       exports: 'Firebase'
+    },
+    googlemaps: {
+      params: {
+        key : 'AIzaSyCLUSs24sIbNQ3RBNUwvab0_J-80VPLVGo',
+        libraries: 'places'
+      }
     }
   }
 });
