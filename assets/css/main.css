@@ -354,7 +354,8 @@ input[type="button"].btn-light {
 
 input,
 textarea,
-input:valid {
+input:valid,
+input.valid {
   display: block;
   margin-bottom: 10px;
   background-color: #C7DBD7;
