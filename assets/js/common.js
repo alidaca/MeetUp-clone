@@ -17,12 +17,13 @@ requirejs.config({
     },
     firebase: {
       exports: 'Firebase'
-    },
-    googlemaps: {
-      params: {
-        key : 'AIzaSyCLUSs24sIbNQ3RBNUwvab0_J-80VPLVGo',
-        libraries: 'places'
-      }
     }
+    // googlemaps: {
+    //   url: 'https://maps.googleapis.com/maps/api/js',
+    //   params: {
+    //     key : 'AIzaSyCLUSs24sIbNQ3RBNUwvab0_J-80VPLVGo',
+    //     libraries: 'places'
+    //   }
+    //}
   }
 });
