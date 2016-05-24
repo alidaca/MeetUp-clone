@@ -12,6 +12,15 @@ requirejs(['jquery', 'leanModal'],function($, leanModal){
     firebaseAuth.init();
   });
 
+  require(['googlemaps','app/addEventForm'],function(GoogleMapsLoader,addEventForm){
+    GoogleMapsLoader.done(function(){
+      addEventForm.init();
+    }).fail(function(){
+      console.error("ERROR: Google maps library failed to load");
+    });
+  });
+
+
   // requirejs(['jquery'],function(modalCtrl){});
 
 });

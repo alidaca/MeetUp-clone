@@ -1,9 +1,11 @@
 define(['jquery', 'app/googleApi'],function($, googleApi){
 
+  var currentDate;
   var addEventForm = {
 
     init: function(){
       this.cacheDom();
+      googleApi.init();
     },
 
     cacheDom: function(){
