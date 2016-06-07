@@ -16,10 +16,10 @@ input.valid
   padding: 5px
   border-radius: 10px
 
-input:focus
-// input[type="text"]:focus,
-// input[type="textarea"]:focus,
-// input[type="email"]:focus,
+input:focus,
+input[type="text"]:focus,
+input[type="textarea"]:focus,
+input[type="email"]:focus,
 textarea:focus
   outline-color: $accent1
   background-color: $light-bg
@@ -27,9 +27,10 @@ textarea:focus
 
 // input[type="text"]:focus:required:invalid,
 // input[type="textarea"]:focus:required:invalid,
-// input[type="email"]:focus:required:invalid
+// input[type="email"]:focus:required:invalid,
 input.invalid:focus,
-input:focus:required:invalid
+input:focus:required:invalid,
+input.invalid
   border: 1px solid $red
   background-color: $light-red
   outline-color: $red

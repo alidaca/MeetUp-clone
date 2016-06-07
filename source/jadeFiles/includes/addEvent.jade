@@ -18,7 +18,7 @@
             input(type="time" name="eventStart" id="eventStart" required)
           .time-end
             label(for="eventEnd") What time will it end? (optional)
-            input(type="time" name="eventEnd" id="eventEnd")
+            input(type="time" name="eventEnd" id="eventEnd" class="valid")
         label(for="eventLocation") Where will it be?
         input(type="text" name="eventLocation" id="eventLocation" placeholder="Address" required)
         label(for="hostName") Who is hosting? (optional)
@@ -26,6 +26,7 @@
         label(for="eventDetails") What should your guest know? (optional)
         textArea(type="textarea" name="eventDetails" id="eventDetails")
     .footer
-      .button.btn-light(disabled="disabled" id="continueBtn") Continue
+      a(href="addGuests.html")
+        .button.btn-light(disabled="disabled" id="continueBtn") Continue
         
 
