@@ -363,13 +363,18 @@ input.valid {
   padding: 5px;
   border-radius: 10px; }
 
+input:focus,
+input[type="text"]:focus,
+input[type="textarea"]:focus,
+input[type="email"]:focus,
 textarea:focus {
   outline-color: #C8F9EE;
   background-color: #C7DBD7;
   border: 1px solid #01614B; }
 
 input.invalid:focus,
-input:focus:required:invalid {
+input:focus:required:invalid,
+input.invalid {
   border: 1px solid #8B0303;
   background-color: #fedbdb;
   outline-color: #8B0303; }
@@ -731,7 +736,7 @@ input:focus:required:invalid {
   .event-info input[type="time"] {
     margin: 0; }
   .event-info input[type="time"] {
-    max-width: 80px; }
+    max-width: 110px; }
 
 .guests-info {
   margin: 10px auto 0 auto;
