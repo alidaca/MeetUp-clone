@@ -7,33 +7,25 @@
         li.active 3
     .confirm-info
       h3#confirmName Event Name
-      .dateAndTime
-        h4#confirmDate Date: 
-          span mm/dd/yyyy
-        h5#confirmStart From:
-          span hh:mm AM
-        h5#confirmEnd To:
-          span hh:mm PM
-      h5#confirmLocation Location:
-        span location address, city and zipcode
-      h5#confirmHost Hosted by:
-        span host name
-      h5#confirmDetails Event Details
-        p additional information if provided
-      h5#confirmList Guest
-        ul#confirmedGuests
-          li guest@email.com
-          li guest@email.com
-          li guest@email.com
-          li guest@email.com
-          li guest@email.com
-          li guest@email.com
-          li guest@email.com
-          li guest@email.com
-          li guest@email.com
-          li guest@email.com
-          li guest@email.com   
+      .date-and-time
+        h4 Date: 
+          span#confirmDate mm/dd/yyyy
+        h4 From: 
+          span#confirmStart hh:mm AM
+        h4 To: 
+          span#confirmEnd hh:mm PM
+      h4 Location: 
+        span#confirmLocation location address, city and zipcode
+      h4 Hosted by: 
+        span#confirmHost host name
+      h4 Event Details
+        p#confirmDetails additional information if provided
+      h4 Guests
+        #confirmGuests
+          ul#confirmList
+            
     .footer
-      .button.btn-light( id="continue") Confirm
+      .button.btn-light(id="startOver") Start Over
+      .button.btn-light(id="confirm") Confirm
         
 

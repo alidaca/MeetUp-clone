@@ -12,9 +12,9 @@ requirejs(['jquery', 'leanModal'],function($, leanModal){
     firebaseAuth.init();
   });
 
-  requirejs(['app/home-events.js'],function(homeEvents){
-    homeEvents.init();
-  });
+  require(['app/confirmEventPage'], function(confirmEvent){
+  confirmEvent.init();
+});
 
   // requirejs(['jquery'],function(modalCtrl){});
 

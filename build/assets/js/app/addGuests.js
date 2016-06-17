@@ -12,14 +12,9 @@ requirejs(['jquery', 'leanModal'],function($, leanModal){
     firebaseAuth.init();
   });
 
-  require(['googlemaps','app/addGuestForm'],function(GoogleMapsLoader,addGuestForm){
-    GoogleMapsLoader.done(function(){
-      addGuestForm.init();
-    }).fail(function(){
-      console.error("ERROR: Google maps library failed to load");
-    });
+  requirejs(['app/addGuestForm'], function(addGuestsForm){
+    addGuestsForm.init();
   });
-
 
   // requirejs(['jquery'],function(modalCtrl){});
 

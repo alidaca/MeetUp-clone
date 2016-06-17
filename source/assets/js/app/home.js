@@ -12,6 +12,10 @@ requirejs(['jquery', 'leanModal'],function($, leanModal){
     firebaseAuth.init();
   });
 
+  requirejs(['app/home-events.js'],function(homeEvents){
+    homeEvents.init();
+  });
+
   // requirejs(['jquery'],function(modalCtrl){});
 
 });
