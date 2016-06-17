@@ -1,20 +1,20 @@
-define(['jquery', 'app/googleApi', 'app/firebase-auth'],function($, googleApi,firebaseAuth){
+define(['jquery', 'app/googleApi', 'app/firebase-auth','app/firebase-event'],function($, googleApi,firebaseAuth, firebaseEvent){
 
-  var currentDate = new Date();
+  var currentDate = Date.now();
  
   var addEventForm = {
 
-    newEvent: {
-      name: '',
-      date: '',
-      start:'',
-      end: '',
-      location: '',
-      host: '',
-      details: '',
-      author: '',
-      guests:''
-    },
+    // newEvent: {
+    //   name: '',
+    //   date: '',
+    //   start:'',
+    //   end: '',
+    //   location: '',
+    //   host: '',
+    //   details: '',
+    //   author: '',
+    //   guests:[]
+    // },
 
     init: function(){
       this.cacheDom();
@@ -40,7 +40,7 @@ define(['jquery', 'app/googleApi', 'app/firebase-auth'],function($, googleApi,fi
       this.$eventDate.on('change', this.validateDate.bind(this));
       this.$eventEnd.on('keyup click', this.validateTime.bind(this));
       this.$eventName.on('blur change', {field: addEventForm.$eventName}, this.isEmpty);
-      this.$eventDate.on('blur change',{field: addEventForm.$eventDate}, this.isEmpty);
+      // this.$eventDate.on('change',{field: addEventForm.$eventDate}, this.isEmpty);
       this.$eventLocation.on('blur change',{field: addEventForm.$eventLocation}, this.isEmpty);
       $('input, textarea').on('change keyup',this.validateForm.bind(this));
       this.$continueBtn.on('click', this.saveEvent.bind(this));
@@ -48,11 +48,15 @@ define(['jquery', 'app/googleApi', 'app/firebase-auth'],function($, googleApi,fi
 
     validateDate: function(){
       var inputDate = Date.parse(this.$eventDate.val());
+      console.log(currentDate);
+      console.log(inputDate);
+      console.log(inputDate >= currentDate);
       if(inputDate >= currentDate){
+        console.log('condition is true');
         this.renderValidation(addEventForm.$eventDate, true);
-        // addEventForm.$eventDate.set;
         return true;
       }else{
+        console.log('condition is false');
         this.renderValidation(addEventForm.$eventDate, false);
         return false;
       }
@@ -80,10 +84,12 @@ define(['jquery', 'app/googleApi', 'app/firebase-auth'],function($, googleApi,fi
     },
     renderValidation: function(field, value){
       if(value === true){
+        console.log('added valid');
         field.removeClass('invalid');
         field.addClass('valid');
       }else{
-        field.removeClass('invalid');
+        console.log('added invalid');
+        field.removeClass('valid');
         field.addClass('invalid');
       }
     },
@@ -107,16 +113,26 @@ define(['jquery', 'app/googleApi', 'app/firebase-auth'],function($, googleApi,fi
       }
     },
     saveEvent:function(){
-      newEvent.name = this.$eventName.val();
-      newEvent.date = this.$eventDate.val();
-      newEvent.start = this.$eventStart.val();
-      newEvent.end = this.$eventEnd.val();
-      newEvent.location = this.$eventLocation.val();
-      newEvent.host = this.$eventLocation.val();
-      newEvent.details = this.$eventDetails.val();
+      // this.newEvent.name = this.$eventName.val();
+      // this.newEvent.date = this.$eventDate.val();
+      // this.newEvent.start = this.$eventStart.val();
+      // this.newEvent.end = this.$eventEnd.val();
+      // this.newEvent.location = this.$eventLocation.val();
+      // this.newEvent.host = this.$eventLocation.val();
+      // this.newEvent.details = this.$eventDetails.val();
+      firebaseEvent.newEvent.name = this.$eventName.val();
+      firebaseEvent.newEvent.date = this.$eventDate.val();
+      firebaseEvent.newEvent.start = this.$eventStart.val();
+      firebaseEvent.newEvent.end = this.$eventEnd.val();
+      firebaseEvent.newEvent.location = this.$eventLocation.val();
+      firebaseEvent.newEvent.host = this.$eventLocation.val();
+      firebaseEvent.newEvent.details = this.$eventDetails.val();
       console.log(firebaseAuth);
-      newEvent.author = firebaseAuth.user.id;
-      console.log(newEvent);
+      firebaseEvent.newEvent.author = firebaseAuth.user.id;
+      console.log(firebaseEvent.newEvent);
+      // this.cacheandContinue();
+      firebaseEvent.createEvent(this.goTo('addGuests.html'));
+      // firebaseEvent.updateEvent(firebaseEvent.newEvent, this.cacheAndContinue);
     },
     refreshForm: function(){
       $('input').each(function(){
@@ -126,6 +142,9 @@ define(['jquery', 'app/googleApi', 'app/firebase-auth'],function($, googleApi,fi
       this.$eventDate.val('');
       this.$eventStart.val('');
       this.$eventEnd.val('');
+    },
+    goTo: function(page){
+      window.open(page, '_self');
     }
   };
 
