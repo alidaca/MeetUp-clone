@@ -184,7 +184,7 @@ define(['jquery','firebase','app/modal-main', 'app/modal-controls'], function($,
           name: firebaseAuth.user.name
 
           });
-          console.log('new user added to db')
+          console.log('new user added to db');
         }else{
           console.log('there is already an account with that email');
           // newUser = false;

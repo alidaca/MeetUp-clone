@@ -372,6 +372,7 @@ textarea:focus {
   background-color: #C7DBD7;
   border: 1px solid #01614B; }
 
+textarea:focus:required:invalid,
 input.invalid:focus,
 input:focus:required:invalid,
 input.invalid {
@@ -694,7 +695,8 @@ input.invalid {
     max-height: 105px; } }
 
 .container-addEvent,
-.container-addGuests {
+.container-addGuests,
+.container-confirmEvent {
   box-sizing: border-box;
   width: 100%;
   padding: 50px 20px;
@@ -702,7 +704,8 @@ input.invalid {
   text-align: center;
   padding: 10px; }
   .container-addEvent .main,
-  .container-addGuests .main {
+  .container-addGuests .main,
+  .container-confirmEvent .main {
     position: relative;
     opacity: 0.99;
     background-color: #01614B;
@@ -760,4 +763,31 @@ input.invalid {
       padding: 0;
       margin: 0; }
   .guests-info textarea {
-    width: 100%; }
+    width: 100%;
+    color: #01614B; }
+
+.confirm-info {
+  margin: 10px auto 0 auto;
+  max-width: 550px;
+  color: #fff;
+  font-size: 14px;
+  font-style: italic;
+  text-align: left; }
+  .confirm-info .date-and-time {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-pack: justify;
+        justify-content: space-between;
+    margin-bottom: 10px; }
+  .confirm-info input {
+    color: #023D30; }
+  .confirm-info input[type="text"],
+  .confirm-info textarea {
+    width: 100%;
+    margin-bottom: 10px;
+    margin-top: 5px; }
+  .confirm-info input[type="date"],
+  .confirm-info input[type="time"] {
+    margin: 0; }
+  .confirm-info input[type="time"] {
+    max-width: 110px; }
