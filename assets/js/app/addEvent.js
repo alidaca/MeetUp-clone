@@ -20,7 +20,6 @@ requirejs(['jquery', 'leanModal'],function($, leanModal){
     });
   });
 
-
   // requirejs(['jquery'],function(modalCtrl){});
 
 });

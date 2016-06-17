@@ -43,13 +43,9 @@ define(['jquery', 'app/addEventForm', 'app/firebase-event'],function($, addEvent
       for(var i=0; i<array.length; i++){
         firebaseEvent.newEvent.guests = array;
       }
-      firebaseEvent.updateEvent(this.goTo);
+      firebaseEvent.updateEvent(firebaseEvent.goTo('confirmEvent.html'));
       console.log(firebaseEvent.newEvent);
-    },
-    goTo: function(){
-      alert('guests added to event');
     }
-
   };
 
   return addGuestForm;

@@ -33,6 +33,8 @@ define(['jquery','firebase'],function($,firebase){
     updateEvent: function(onComplete){
       console.log('updateEvent fired');
       var storedKey;
+      console.log(storedKey);
+      console.log(localStorage.getItem('eventKey'));
       if (eventKey === undefined){
         storedKey = localStorage.getItem('eventKey');
       }else{
@@ -41,6 +43,10 @@ define(['jquery','firebase'],function($,firebase){
       var eventPath = firebaseDatabase.child('events').child(storedKey).update({guests: firebaseEvent.newEvent.guests});
 
       // firebaseDatabase.child('events').child(eventKey).set(firebaseEvent.newEvent, onComplete);
+    },
+
+    goTo: function(page){
+      window.open(page,'_self');
     }
     
   };
@@ -48,7 +54,3 @@ define(['jquery','firebase'],function($,firebase){
   return firebaseEvent;
 });
 
-// var adaNameRef = firebase.database().ref('users/ada/name');
-// // Modify the 'first' and 'last' properties, but leave other data at
-// // adaNameRef unchanged.
-// adaNameRef.update({ first: 'Ada', last: 'Lovelace' });

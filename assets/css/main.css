@@ -766,28 +766,38 @@ input.invalid {
     width: 100%;
     color: #01614B; }
 
-.confirm-info {
+.container-confirmEvent .confirm-info {
   margin: 10px auto 0 auto;
   max-width: 550px;
   color: #fff;
   font-size: 14px;
   font-style: italic;
   text-align: left; }
-  .confirm-info .date-and-time {
+  .container-confirmEvent .confirm-info h3 {
+    margin: 20px 10px; }
+  .container-confirmEvent .confirm-info h4 {
+    margin: 10px; }
+    .container-confirmEvent .confirm-info h4 span,
+    .container-confirmEvent .confirm-info h4 p {
+      font-weight: normal;
+      font-size: 18px; }
+  .container-confirmEvent .confirm-info .date-and-time {
     display: -ms-flexbox;
     display: flex;
     -ms-flex-pack: justify;
-        justify-content: space-between;
-    margin-bottom: 10px; }
-  .confirm-info input {
-    color: #023D30; }
-  .confirm-info input[type="text"],
-  .confirm-info textarea {
-    width: 100%;
-    margin-bottom: 10px;
-    margin-top: 5px; }
-  .confirm-info input[type="date"],
-  .confirm-info input[type="time"] {
-    margin: 0; }
-  .confirm-info input[type="time"] {
-    max-width: 110px; }
+        justify-content: space-between; }
+  .container-confirmEvent .confirm-info #confirmGuests {
+    max-height: 300px;
+    overflow: scroll; }
+    .container-confirmEvent .confirm-info #confirmGuests ul {
+      list-style: none;
+      padding: 0; }
+      .container-confirmEvent .confirm-info #confirmGuests ul li {
+        font-weight: normal;
+        font-size: 18px; }
+
+.container-confirmEvent .footer #startOver {
+  margin-right: 20px; }
+
+.container-confirmEvent .footer #confirm {
+  margin-left: 20px; }

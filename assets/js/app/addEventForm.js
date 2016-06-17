@@ -102,30 +102,17 @@ define(['jquery', 'app/googleApi', 'app/firebase-auth','app/firebase-event'],fun
       }
     },
     validateForm: function(){
-      // console.log('validateForm fired');
-      // console.log('eventName is:'+ this.$eventName.hasClass('valid'));
-      // console.log('eventDate is:' + this.$eventDate.hasClass('valid'));
-      // console.log('eventStart is:' + this.$eventStart[0].checkValidity());
-      // console.log('eventLocation is: '+ this.$eventLocation.hasClass('valid'));
-      // console.log('eventEnd is: '+ this.$eventEnd.hasClass('valid'));
       if(this.$eventName.hasClass('valid') && this.$eventDate.hasClass('valid') && this.$eventStart[0].checkValidity() && this.$eventLocation.hasClass('valid') && this.$eventEnd.hasClass('valid')){
         this.$continueBtn.removeAttr('disabled');
       }
     },
     saveEvent:function(){
-      // this.newEvent.name = this.$eventName.val();
-      // this.newEvent.date = this.$eventDate.val();
-      // this.newEvent.start = this.$eventStart.val();
-      // this.newEvent.end = this.$eventEnd.val();
-      // this.newEvent.location = this.$eventLocation.val();
-      // this.newEvent.host = this.$eventLocation.val();
-      // this.newEvent.details = this.$eventDetails.val();
       firebaseEvent.newEvent.name = this.$eventName.val();
       firebaseEvent.newEvent.date = this.$eventDate.val();
       firebaseEvent.newEvent.start = this.$eventStart.val();
       firebaseEvent.newEvent.end = this.$eventEnd.val();
       firebaseEvent.newEvent.location = this.$eventLocation.val();
-      firebaseEvent.newEvent.host = this.$eventLocation.val();
+      firebaseEvent.newEvent.host = this.$eventHost.val();
       firebaseEvent.newEvent.details = this.$eventDetails.val();
       console.log(firebaseAuth);
       firebaseEvent.newEvent.author = firebaseAuth.user.id;
