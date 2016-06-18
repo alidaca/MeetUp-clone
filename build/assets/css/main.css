@@ -457,7 +457,8 @@ input.invalid {
         margin-right: 5px; }
       .login-modal-wrap .modal-body .footer-wrap input[type="submit"] {
         text-align: center;
-        margin-left: 5px; }
+        margin-left: 5px;
+        line-height: 30px; }
     .login-modal-wrap .modal-body .email-login {
       display: none; }
     .login-modal-wrap .modal-body .signup-form {
@@ -628,7 +629,8 @@ input.invalid {
       border-color: #C8F9EE; }
   .main-wrap .event-card.media-element {
     -ms-flex-align: start;
-        align-items: flex-start; }
+        align-items: flex-start;
+    max-width: 300px; }
     .main-wrap .event-card.media-element .event-description {
       font-weight: 200; }
 

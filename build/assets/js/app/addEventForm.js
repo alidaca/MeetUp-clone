@@ -108,7 +108,8 @@ define(['jquery', 'app/googleApi', 'app/firebase-auth','app/firebase-event'],fun
     },
     saveEvent:function(){
       firebaseEvent.newEvent.name = this.$eventName.val();
-      firebaseEvent.newEvent.date = this.$eventDate.val();
+      firebaseEvent.newEvent.date = this.formatDate(this.$eventDate.val());
+      // firebaseEvent.newEvent.date = this.$eventDate.val();
       firebaseEvent.newEvent.start = this.$eventStart.val();
       firebaseEvent.newEvent.end = this.$eventEnd.val();
       firebaseEvent.newEvent.location = this.$eventLocation.val();
@@ -132,6 +133,16 @@ define(['jquery', 'app/googleApi', 'app/firebase-auth','app/firebase-event'],fun
     },
     goTo: function(page){
       window.open(page, '_self');
+    },
+    formatDate: function(value){
+      var date = new Date(Date.parse(value));
+      var months = ['January','February','March','April','May','June','July','August','Spetember','October','November','December'];
+      var month = months[date.getMonth()];
+      var day = date.getDate();
+      var year = date.getFullYear();
+      var fullDate = month + ' ' + day + ', ' + year;
+      console.log(fullDate);
+      return fullDate;
     }
   };
 
