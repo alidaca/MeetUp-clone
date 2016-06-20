@@ -491,34 +491,42 @@ input.invalid {
 .breadcrumbs {
   text-align: center;
   margin-bottom: 30px; }
-  .breadcrumbs li {
-    width: 3em;
-    height: 3em;
-    text-align: center;
-    line-height: 3em;
-    border-radius: 2em;
-    background: #fff;
-    margin: 0 2em;
-    display: inline-block;
-    color: #023D30;
-    position: relative; }
-  .breadcrumbs li::before {
-    content: '';
-    position: absolute;
-    top: 1.3em;
-    left: -6em;
-    width: 6em;
-    height: .2em;
-    background: #fff;
-    z-index: -1; }
-  .breadcrumbs li:first-child::before {
-    display: none; }
-  .breadcrumbs .active {
-    background: #fff; }
-  .breadcrumbs .active ~ li {
-    background: #72A59A; }
-  .breadcrumbs .active ~ li::before {
-    background: #72A59A; }
+  .breadcrumbs ul {
+    padding: 0; }
+    .breadcrumbs ul li {
+      width: 3em;
+      height: 3em;
+      text-align: center;
+      line-height: 3em;
+      border-radius: 2em;
+      background: #fff;
+      margin: 0 2em;
+      display: inline-block;
+      color: #023D30;
+      position: relative; }
+    .breadcrumbs ul li::before {
+      content: '';
+      position: absolute;
+      top: 1.3em;
+      left: -6em;
+      width: 6em;
+      height: .2em;
+      background: #fff;
+      z-index: -1; }
+    .breadcrumbs ul li:first-child::before {
+      display: none; }
+    .breadcrumbs ul .active {
+      background: #fff; }
+    .breadcrumbs ul .active ~ li {
+      background: #72A59A; }
+    .breadcrumbs ul .active ~ li::before {
+      background: #72A59A; }
+
+@media (max-width: 380px) {
+  .breadcrumbs ul li {
+    margin: 0 1em; }
+    .breadcrumbs ul li:before {
+      left: -5em; } }
 
 /** _example-page-home.sass **/
 .page-home {
@@ -639,14 +647,20 @@ input.invalid {
     display: block;
     padding-top: 20px; }
     .main-wrap .event-card {
-      margin: 10px; }
+      margin: 10px auto; }
     .main-wrap .media {
       max-width: 30px; } }
+
+@media (max-width: 450px) {
+  .login-modal-wrap {
+    max-width: 300px;
+    top: 10px; } }
 
 .header-wrap-pages {
   background-color: #01614B;
   width: 100%;
-  padding-top: 10px; }
+  padding-top: 10px;
+  overflow: hidden; }
   .header-wrap-pages .container {
     display: -ms-flexbox;
     display: flex;
@@ -696,6 +710,14 @@ input.invalid {
     max-width: 210px;
     max-height: 105px; } }
 
+@media (max-width: 500px) {
+  .header-wrap-pages .container {
+    -ms-flex-direction: column;
+        flex-direction: column; }
+    .header-wrap-pages .container .logo-pages {
+      -ms-flex-order: 1;
+          order: 1; } }
+
 .container-addEvent,
 .container-addGuests,
 .container-confirmEvent {
@@ -743,6 +765,9 @@ input.invalid {
   .event-info input[type="time"] {
     max-width: 110px; }
 
+.event-info .date-and-time {
+  display: block; }
+
 .guests-info {
   margin: 10px auto 0 auto;
   max-width: 550px;
@@ -783,11 +808,11 @@ input.invalid {
     .container-confirmEvent .confirm-info h4 p {
       font-weight: normal;
       font-size: 18px; }
+    .container-confirmEvent .confirm-info h4 span {
+      margin: 0 10px; }
   .container-confirmEvent .confirm-info .date-and-time {
     display: -ms-flexbox;
-    display: flex;
-    -ms-flex-pack: justify;
-        justify-content: space-between; }
+    display: flex; }
   .container-confirmEvent .confirm-info #confirmGuests {
     max-height: 300px;
     overflow: scroll; }
@@ -803,3 +828,25 @@ input.invalid {
 
 .container-confirmEvent .footer #confirm {
   margin-left: 20px; }
+
+@media (max-width: 550px) {
+  .container-confirmEvent .confirm-info .date-and-time {
+    display: block; } }
+
+@media (max-width: 350px) {
+  .container-confirmEvent .footer {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+        flex-direction: column;
+    -ms-flex-align: center;
+        align-items: center; }
+    .container-confirmEvent .footer #startOver,
+    .container-confirmEvent .footer #confirm {
+      margin: 10px; }
+    .container-confirmEvent .footer #startOver {
+      -ms-flex-order: 1;
+          order: 1; }
+    .container-confirmEvent .footer #confirm {
+      -ms-flex-order: 0;
+          order: 0; } }
