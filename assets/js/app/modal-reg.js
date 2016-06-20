@@ -1,5 +1,5 @@
 //REGISTRATION FORM
-define(['jquery', 'app/firebase-auth'], function($,firebaseAuth){
+define(['jquery', 'https://alidaca.github.io/MeetUp-clone/app/firebase-auth'], function($,firebaseAuth){
   var regForm = {
     init: function(){
       this.cacheDom();

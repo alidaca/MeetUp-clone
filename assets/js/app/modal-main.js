@@ -1,6 +1,6 @@
 
 //MODAL MAIN LOGIN
-define(['jquery','app/firebase-auth'], function($, firebaseAuth){
+define(['jquery','https://alidaca.github.io/MeetUp-clone/app/firebase-auth'], function($, firebaseAuth){
   // var firebase = firebaseAuth.firebaseData;
 
   var modalMain = {
