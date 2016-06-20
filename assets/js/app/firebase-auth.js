@@ -1,4 +1,4 @@
-define(['jquery','firebase','https://alidaca.github.io/MeetUp-clone/app/modal-main', 'https://alidaca.github.io/MeetUp-clone/app/modal-controls'], function($,firebase,modalMain,modalCtrl){
+define(['jquery','firebase','https://alidaca.github.io/MeetUp-clone/assets/js/app/modal-main.js', 'https://alidaca.github.io/MeetUp-clone/assets/js/app/modal-controls.js'], function($,firebase,modalMain,modalCtrl){
   var firebaseDatabase = new Firebase('https://meetappplnr.firebaseio.com/');
 
   var firebaseAuth = {

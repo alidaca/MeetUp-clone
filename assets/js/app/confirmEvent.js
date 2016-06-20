@@ -1,18 +1,18 @@
 requirejs(['jquery', 'leanModal'],function($, leanModal){
 
-  requirejs(['https://alidaca.github.io/MeetUp-clone/app/modal-main'],function(modalMain){
+  requirejs(['https://alidaca.github.io/MeetUp-clone/assets/js/app/modal-main.js'],function(modalMain){
     modalMain.init();
   });
 
-  requirejs(['https://alidaca.github.io/MeetUp-clone/app/modal-reg'], function(modalReg){
+  requirejs(['https://alidaca.github.io/MeetUp-clone/assets/js/app/modal-reg.js'], function(modalReg){
     modalReg.init();
   });
 
-  requirejs(['https://alidaca.github.io/MeetUp-clone/app/firebase-auth'], function(firebaseAuth){
+  requirejs(['https://alidaca.github.io/MeetUp-clone/assets/js/app/firebase-auth.js'], function(firebaseAuth){
     firebaseAuth.init();
   });
 
-  require(['https://alidaca.github.io/MeetUp-clone/app/confirmEventPage'], function(confirmEvent){
+  require(['https://alidaca.github.io/MeetUp-clone/assets/js/app/confirmEventPage.js'], function(confirmEvent){
   confirmEvent.init();
 });
 
