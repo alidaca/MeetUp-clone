@@ -24,7 +24,7 @@ define(['jquery','firebase'], function($,firebase){
     },
     renderEvent: function(eventName, eventLocation, eventDate){
       var markup =  '<div class="event-card media-element">' +
-                      '<img src="/assets/img/icons/event-icon.svg" alt="event-icon" class="media">' +
+                      '<img src="https://alidaca.github.io/MeetUp-clone/assets/img/icons/event-icon.svg" alt="event-icon" class="media">' +
                         '<div class="caption">' + 
                           '<h3>' + eventName + '</h3>' +
                           '<hr>' +

@@ -1,4 +1,4 @@
-define(['jquery', 'https://alidaca.github.io/MeetUp-clone/app/addEventForm', 'https://alidaca.github.io/MeetUp-clone/app/firebase-event'],function($, addEventForm, firebaseEvent){
+define(['jquery', 'https://alidaca.github.io/MeetUp-clone/assets/js/app/addEventForm.js', 'https://alidaca.github.io/MeetUp-clone/assets/js/app/firebase-event.js'],function($, addEventForm, firebaseEvent){
 
   var list = [];
   var addGuestForm = {
