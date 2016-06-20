@@ -1,4 +1,4 @@
-define(['jquery', 'app/googleApi', 'app/firebase-auth','app/firebase-event'],function($, googleApi,firebaseAuth, firebaseEvent){
+define(['jquery', 'https://alidaca.github.io/MeetUp-clone/app/googleApi', 'https://alidaca.github.io/MeetUp-clone/app/firebase-auth','https://alidaca.github.io/MeetUp-clone/app/firebase-event'],function($, googleApi,firebaseAuth, firebaseEvent){
 
   var currentDate = Date.now();
  

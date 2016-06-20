@@ -1,3 +1,3 @@
 requirejs(['./common'], function (common) {
-    requirejs(['app/addEvent']);
+    requirejs(['https://alidaca.github.io/MeetUp-clone/app/addEvent']);
 });
