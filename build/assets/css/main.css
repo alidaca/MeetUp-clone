@@ -542,7 +542,7 @@ input.invalid {
     background-color: rgba(255, 255, 255, 0.7);
     box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1); }
     .page-home section:first-child {
-      background-image: url(../img/tools.png);
+      background-image: url(https://alidaca.github.io/MeetUp-clone/img/tools.png);
       background-position: center; }
     .page-home section h1 {
       font-weight: 700;
@@ -589,7 +589,7 @@ input.invalid {
       width: 420px;
       height: 210px;
       margin: auto auto 20px auto;
-      background-image: url(/assets/img/logo.png);
+      background-image: url(https://alidaca.github.io/MeetUp-clone/assets/img/logo.png);
       background-repeat: no-repeat;
       background-position: center;
       background-size: 90% auto; }
@@ -680,7 +680,7 @@ input.invalid {
         width: 210px;
         height: 105px;
         margin: auto auto 20px auto;
-        background-image: url(/assets/img/logo.png);
+        background-image: url(https://alidaca.github.io/MeetUp-clone/assets/img/logo.png);
         background-repeat: no-repeat;
         background-position: center;
         background-size: 90% auto; }
