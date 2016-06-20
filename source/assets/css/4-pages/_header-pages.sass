@@ -2,6 +2,7 @@
   background-color: $accent2
   width: 100%
   padding-top: 10px
+  overflow: hidden
   .container
     display: flex
     justify-content: space-between
@@ -49,4 +50,11 @@
   h1.show-image
     max-width: 210px
     max-height: 105px
+
+@media(max-width:500px)
+  .header-wrap-pages
+    .container
+      flex-direction: column
+      .logo-pages
+        order: 1
 
