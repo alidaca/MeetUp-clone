@@ -11,8 +11,8 @@ define(['jquery', 'firebase'], function($,firebase){
       this.$emailLogin = $('.email-login');
       this.$emailInput = this.$emailLogin.find('#email-login');
       this.$pwdInput = this.$emailLogin.find('#pwd-login');
-      this.$loginBtn = this.$emailLogin.find('#modal-btn-signIn');
-      this.$loginBack = this.$emailLogin.find('#button.modal-btn-back');
+      this.$loginBtn = this.$emailLogin.find('.button.modal-btn-signIn');
+      this.$loginBack = this.$emailLogin.find('.button.modal-btn-back');
     },
 
     bindEvents: function(){
