@@ -8,6 +8,10 @@ requirejs(['jquery', 'leanModal'],function($, leanModal){
     modalReg.init();
   });
 
+  requirejs(['https://alidaca.github.io/MeetUp-clone/assets/js/app/modal-email.js'], function(modalEmail){
+    modalEmail.init();
+  });
+
   requirejs(['https://alidaca.github.io/MeetUp-clone/assets/js/app/firebase-auth.js'], function(firebaseAuth){
     firebaseAuth.init();
   });
