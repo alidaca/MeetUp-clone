@@ -23,8 +23,10 @@ define(['jquery', 'firebase'], function($,firebase){
 
     validateInput: function(){
       console.log('validating input');
+      console.log(this.$emailInput[0]);
+      console.log(this.$pwdInput[0]);
       if (this.$emailInput[0].checkValidity() && this.$pwdInput[0].checkValidity()){
-        cosnole.log('all inputs provided');
+        console.log('all inputs provided');
         this.$loginBtn.removeAttr('disabled');
       }
     },
