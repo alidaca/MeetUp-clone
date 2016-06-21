@@ -1,7 +1,7 @@
 define(['jquery', 'firebase'], function($,firebase){
    var modalEmail = {
 
-    init : function(){
+    init: function(){
       console.log('modalEmail init fired');
       this.cacheDom();
       this.bindEvents();
@@ -16,8 +16,8 @@ define(['jquery', 'firebase'], function($,firebase){
     },
 
     bindEvents: function(){
-      this.$loginBtn.on('click', this.checkAuth.bind(this);
-      this.$emailInput.on('change', this.validateInput.bind(this);
+      this.$loginBtn.on('click', this.checkAuth.bind(this));
+      this.$emailInput.on('change', this.validateInput.bind(this));
       this.$pwdInput.on('change',this.validateInput.bind(this));
     },
 
