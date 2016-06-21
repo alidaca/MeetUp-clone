@@ -17,8 +17,8 @@ define(['jquery', 'firebase'], function($,firebase){
 
     bindEvents: function(){
       this.$loginBtn.on('click', this.checkAuth.bind(this));
-      this.$emailInput.on('change', this.validateInput.bind(this));
-      this.$pwdInput.on('change',this.validateInput.bind(this));
+      this.$emailInput.on('change keyup', this.validateInput.bind(this));
+      this.$pwdInput.on('change keyup',this.validateInput.bind(this));
     },
 
     validateInput: function(){
