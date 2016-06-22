@@ -44,9 +44,9 @@ requirejs(['jquery', 'leanModal'],function($, leanModal){
     homeEvents.init();
   });
 
-  requirejs(['https://alidaca.github.io/MeetUp-clone/assets/js/app/modal-controls.js'], function(modalControls){
-    modalControls.init();
-  })
+  // requirejs(['https://alidaca.github.io/MeetUp-clone/assets/js/app/modal-controls.js'], function(modalControls){
+  //   modalControls.init();
+  // })
 
   // requirejs(['jquery'],function(modalCtrl){});
 
