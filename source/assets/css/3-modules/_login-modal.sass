@@ -46,7 +46,12 @@
       span:after
         transform: rotate(-45deg) translate(-6px,-2px)         
         transform-origin: top right
-
+  #message
+    display: none
+    p
+      margin: 20px 0px 0px 0px
+      font-size: 16px
+      color: $red
   .modal-body
     padding: 20px
     text-align: left
@@ -72,10 +77,19 @@
         text-align: center
         margin-right: 5px
 
-      input[type="submit"]
+      input[type="submit"],
+      #emailLoginBtn
         text-align: center
         margin-left: 5px
         line-height: 30px
+        border: 1px solid $text1
+        background-color: $accent2
+        color: $text2
+        &:disabled
+          background-color: #cdd6d4
+          color: #a9aaaa
+          cursor: not-allowed
+
 
     .email-login
       display: none

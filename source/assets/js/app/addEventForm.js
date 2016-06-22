@@ -1,5 +1,7 @@
 define(['jquery', 'https://alidaca.github.io/MeetUp-clone/assets/js/app/googleApi.js', 'https://alidaca.github.io/MeetUp-clone/assets/js/app/firebase-auth.js','https://alidaca.github.io/MeetUp-clone/assets/js/app/firebase-event.js'],function($, googleApi,firebaseAuth, firebaseEvent){
 
+// define(['jquery', '/assets/js/app/googleApi.js', '/assets/js/app/firebase-auth.js','/assets/js/app/firebase-event.js'],function($, googleApi,firebaseAuth, firebaseEvent){
+
   var currentDate = Date.now();
  
   var addEventForm = {
@@ -38,8 +40,8 @@ define(['jquery', 'https://alidaca.github.io/MeetUp-clone/assets/js/app/googleAp
     bindEvents: function(){
       // this.$eventName.on('keyup blur');
       this.$eventDate.on('change', this.validateDate.bind(this));
-      this.$eventEnd.on('keyup click', this.validateTime.bind(this));
-      this.$eventName.on('blur change', {field: addEventForm.$eventName}, this.isEmpty);
+      this.$eventEnd.on('keyup blur', this.validateTime.bind(this));
+      this.$eventName.on('blur change keyup', {field: addEventForm.$eventName}, this.isEmpty);
       // this.$eventDate.on('change',{field: addEventForm.$eventDate}, this.isEmpty);
       this.$eventLocation.on('blur change',{field: addEventForm.$eventLocation}, this.isEmpty);
       $('input, textarea').on('change keyup',this.validateForm.bind(this));
@@ -72,8 +74,9 @@ define(['jquery', 'https://alidaca.github.io/MeetUp-clone/assets/js/app/googleAp
       }
     },
     validateTime: function(){
+      console.log(this.$eventEnd);
       if(this.$eventStart.val()){
-        if(this.$eventEnd.val()>this.$eventStart.val()){
+        if(this.$eventEnd.val() === '' || this.$eventEnd.val()>this.$eventStart.val()){
           this.renderValidation(this.$eventEnd, true);
           return true;
         }else{
@@ -102,7 +105,17 @@ define(['jquery', 'https://alidaca.github.io/MeetUp-clone/assets/js/app/googleAp
       }
     },
     validateForm: function(){
-      if(this.$eventName.hasClass('valid') && this.$eventDate.hasClass('valid') && this.$eventStart[0].checkValidity() && this.$eventLocation.hasClass('valid') && this.$eventEnd.hasClass('valid')){
+      console.log('validateform fired');
+      console.log('name: ' + this.$eventName.hasClass('valid'));
+      console.log('date: '+this.$eventDate.hasClass('valid'));
+      console.log('start: '+ this.$eventStart[0].checkValidity());
+      console.log('location: '+ this.$eventLocation.hasClass('valid'));
+      console.log('end: '+ this.$eventEnd.hasClass('valid'));
+      if(this.$eventName.hasClass('valid') && 
+        this.$eventDate.hasClass('valid') && 
+        this.$eventStart[0].checkValidity() && 
+        this.$eventLocation.hasClass('valid') && 
+        this.$eventEnd.hasClass('valid')){
         this.$continueBtn.removeAttr('disabled');
       }
     },
@@ -111,7 +124,7 @@ define(['jquery', 'https://alidaca.github.io/MeetUp-clone/assets/js/app/googleAp
       firebaseEvent.newEvent.date = this.formatDate(this.$eventDate.val());
       // firebaseEvent.newEvent.date = this.$eventDate.val();
       firebaseEvent.newEvent.start = this.$eventStart.val();
-      firebaseEvent.newEvent.end = this.$eventEnd.val();
+      firebaseEvent.newEvent.end = this.formatTime(this.$eventEnd.val());
       firebaseEvent.newEvent.location = this.$eventLocation.val();
       firebaseEvent.newEvent.host = this.$eventHost.val();
       firebaseEvent.newEvent.details = this.$eventDetails.val();
@@ -132,7 +145,7 @@ define(['jquery', 'https://alidaca.github.io/MeetUp-clone/assets/js/app/googleAp
       this.$eventEnd.val('');
     },
     goTo: function(page){
-      window.open(page, '_self');
+      window.open(page,'_self');
     },
     formatDate: function(value){
       var date = new Date(Date.parse(value));
@@ -143,6 +156,23 @@ define(['jquery', 'https://alidaca.github.io/MeetUp-clone/assets/js/app/googleAp
       var fullDate = month + ' ' + day + ', ' + year;
       console.log(fullDate);
       return fullDate;
+    },
+    formatTime: function(value){
+      var formattedTime =  "";
+      if(value !== ''){
+        var timeArr = value.split(':');
+        var ampm,h;
+        var m = timeArr[1];
+        if(timeArr[0] > 12){
+          h = timeArr[0] - 12;
+          ampm = 'PM';
+        }else{
+          h = timeArr[0];
+          ampm = 'AM';
+        }
+        formattedTime = h+':'+m+' '+ampm;
+      }
+      return formattedTime;
     }
   };
 

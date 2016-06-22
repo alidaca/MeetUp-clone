@@ -3,6 +3,8 @@
     h3.modal-title Login to create an event
     .modal-close
       span
+  section#message
+    p error message to appear here
   section.modal-body
 
     //main login screen - with social
@@ -28,7 +30,7 @@
         input(type="password" id="pwd-login" required)
         .footer-wrap
           a.button.modal-btn-back Back
-          a.button.modal-btn-signIn(disabled="disabled") Login
+          a.button.modal-btn-signIn(disabled="disabled" id="emailLoginBtn") Login
 
     //sign-up screen
     .signup-form
@@ -66,6 +68,6 @@
 
         .footer-wrap
           a.button.modal-btn-back Back
-          input(type="submit" id='modal-btn-register' value="Register" disabled)
+          input.button(type="submit" id='modal-btn-register' value="Register" disabled)
 
 

@@ -434,6 +434,12 @@ input.invalid {
                 transform: rotate(-45deg) translate(-6px, -2px);
         -webkit-transform-origin: top right;
                 transform-origin: top right; }
+  .login-modal-wrap #message {
+    display: none; }
+    .login-modal-wrap #message p {
+      margin: 20px 0px 0px 0px;
+      font-size: 16px;
+      color: #8B0303; }
   .login-modal-wrap .modal-body {
     padding: 20px;
     text-align: left; }
@@ -455,10 +461,19 @@ input.invalid {
       .login-modal-wrap .modal-body .footer-wrap .button {
         text-align: center;
         margin-right: 5px; }
-      .login-modal-wrap .modal-body .footer-wrap input[type="submit"] {
+      .login-modal-wrap .modal-body .footer-wrap input[type="submit"],
+      .login-modal-wrap .modal-body .footer-wrap #emailLoginBtn {
         text-align: center;
         margin-left: 5px;
-        line-height: 30px; }
+        line-height: 30px;
+        border: 1px solid #023D30;
+        background-color: #01614B;
+        color: #fff; }
+        .login-modal-wrap .modal-body .footer-wrap input[type="submit"]:disabled,
+        .login-modal-wrap .modal-body .footer-wrap #emailLoginBtn:disabled {
+          background-color: #cdd6d4;
+          color: #a9aaaa;
+          cursor: not-allowed; }
     .login-modal-wrap .modal-body .email-login {
       display: none; }
     .login-modal-wrap .modal-body .signup-form {

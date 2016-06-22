@@ -1,10 +1,13 @@
-define(['jquery', 'firebase'], function($,firebase){
+define(['jquery', 'firebase', 'https://alidaca.github.io/MeetUp-clone/assets/js/app/modal-controls.js'], function($,firebase, modalControls){
+
+// define(['jquery', 'firebase', '/assets/js/app/modal-controls.js'], function($,firebase, modalControls){
    var modalEmail = {
 
     init: function(){
       console.log('modalEmail init fired');
       this.cacheDom();
       this.bindEvents();
+      modalControls.hideMsg();
     },
 
     cacheDom: function(){
@@ -13,12 +16,14 @@ define(['jquery', 'firebase'], function($,firebase){
       this.$pwdInput = this.$emailLogin.find('#pwd-login');
       this.$loginBtn = this.$emailLogin.find('.button.modal-btn-signIn');
       this.$loginBack = this.$emailLogin.find('.button.modal-btn-back');
+      this.$message = $('#message');
     },
 
     bindEvents: function(){
       this.$loginBtn.on('click', this.checkAuth.bind(this));
       this.$emailInput.on('change keyup', this.validateInput.bind(this));
       this.$pwdInput.on('change keyup',this.validateInput.bind(this));
+      this.$loginBack.on('click',modalControls.hideMsg);
     },
 
     validateInput: function(){
@@ -32,27 +37,19 @@ define(['jquery', 'firebase'], function($,firebase){
     },
 
     checkAuth: function(){
+      var message = '';
       var ref = new Firebase("https://meetappplnr.firebaseio.com/");
       ref.authWithPassword({
-        email    : this.emailInput.val(),
-        password : this.pwdInput.val()
+        email    : this.$emailInput.val(),
+        password : this.$pwdInput.val()
       }, function(error, authData) {
         if (error) {
-          switch (error.code) {
-            case "INVALID_EMAIL":
-              console.log("The specified user account email is invalid.");
-              break;
-            case "INVALID_PASSWORD":
-              console.log("The specified user account password is incorrect.");
-              break;
-            case "INVALID_USER":
-              console.log("The specified user account does not exist.");
-              break;
-            default:
-              console.log("Error logging user in:", error);
-          }
+          message = 'Your email or password was incorrect. Please try again.';
+          modalEmail.$message.find('p').text(message);
+          modalEmail.$message.show();
         } else {
           console.log("Authenticated successfully with email:", authData);
+          modalEmail.$message.hide();
         }
       });
     }

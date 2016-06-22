@@ -1,12 +1,16 @@
 
 //MODAL MAIN LOGIN
-define(['jquery','https://alidaca.github.io/MeetUp-clone/assets/js/app/firebase-auth.js'], function($, firebaseAuth){
+define(['jquery','https://alidaca.github.io/MeetUp-clone/assets/js/app/firebase-auth.js','https://alidaca.github.io/MeetUp-clone/assets/js/app/modal-controls.js'], function($, firebaseAuth, modalControls){
+
+
+// define(['jquery','/assets/js/app/firebase-auth.js','/assets/js/app/modal-controls.js'], function($, firebaseAuth,modalControls){
   // var firebase = firebaseAuth.firebaseData;
 
   var modalMain = {
     init: function(){
       this.cacheDom();
       this.bindEvents();
+      modalControls.hideMsg();
       // console.log(firebaseAuth);
     },
 
@@ -15,7 +19,7 @@ define(['jquery','https://alidaca.github.io/MeetUp-clone/assets/js/app/firebase-
       this.$el = $('.modal-body');
       this.$header = this.$el.prev();
       this.$modalTitle = this.$header.find('.modal-title');
-      this.$closeBtn = this.$header.find('modal-close');
+      this.$closeBtn = this.$header.find('.modal-close');
       //forms
       this.$mainLogin = this.$el.find('.main-login');
       this.$emailLogin = this.$el.find('.email-login');
@@ -24,7 +28,7 @@ define(['jquery','https://alidaca.github.io/MeetUp-clone/assets/js/app/firebase-
       this.$loginBtn = this.$el.find('#modal-btn-login');
       this.$signupBtn = this.$el.find('#modal-btn-signUp');
       this.$backBtn = this.$el.find('.modal-btn-back');
-      this.$closeBtn = this.$el.find('.modal-close');
+      // this.$closeBtn = this.$el.find('.modal-close');
       this.$googleLogin = this.$el.find('#google-login');
       this.$facebookLogin = this.$el.find('#facebook-login');
       
@@ -45,19 +49,23 @@ define(['jquery','https://alidaca.github.io/MeetUp-clone/assets/js/app/firebase-
       this.$mainLogin.hide();
       this.$emailLogin.show();
       this.$modalTitle.text('Login with your email');
+      modalControls.hideMsg();
     },
 
     showMainLogin: function(){
+      console.log('showmainlogin fired');
       this.$emailLogin.hide();
       this.$signupForm.hide();
       this.$mainLogin.show();
       this.$modalTitle.text('Login to create an event');
+      modalControls.hideMsg();
     },
 
     showSignupForm: function(){
       this.$mainLogin.hide();
       this.$signupForm.show();
       this.$modalTitle.text('Register');
+      modalControls.hideMsg();
     }
 
   }; //mainLogin{}

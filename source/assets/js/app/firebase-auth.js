@@ -1,4 +1,6 @@
 define(['jquery','firebase','https://alidaca.github.io/MeetUp-clone/assets/js/app/modal-main.js', 'https://alidaca.github.io/MeetUp-clone/assets/js/app/modal-controls.js'], function($,firebase,modalMain,modalCtrl){
+
+// define(['jquery','firebase','/assets/js/app/modal-main.js', '/assets/js/app/modal-controls.js'], function($,firebase,modalMain,modalCtrl){
   var firebaseDatabase = new Firebase('https://meetappplnr.firebaseio.com/');
 
   var firebaseAuth = {
@@ -59,26 +61,6 @@ define(['jquery','firebase','https://alidaca.github.io/MeetUp-clone/assets/js/ap
         this.$addEventBtn.addClass('modal-trigger').attr('href','#modal');
       }
     },
-    // getEmail: function(authData){
-    //   switch(authData.provider){
-    //     case 'password':
-    //       return $('#email-reg').val();
-    //     case 'google':
-    //       return authData.google.email;
-    //     case 'facebook':
-    //       return authData.facebook.email;
-    //   }
-    // },
-    // getName: function(authData){
-    //   switch(authData.provider){
-    //     case 'password':
-    //       return $('#name').val();
-    //     case 'google':
-    //       return authData.google.displayName;
-    //     case 'facebook':
-    //       return authData.facebook.displayName;
-    //   }
-    // },
 
     getId: function(authData){
       console.log(authData)
@@ -155,7 +137,6 @@ define(['jquery','firebase','https://alidaca.github.io/MeetUp-clone/assets/js/ap
           firebaseAuth.user.provider = authData.provider;
           firebaseAuth.user.id = authData.google.id;
           firebaseAuth.isNewUser();
-
           break;
         case('facebook'):
           firebaseAuth.user.name = authData.facebook.displayName;
@@ -192,6 +173,20 @@ define(['jquery','firebase','https://alidaca.github.io/MeetUp-clone/assets/js/ap
         }
       });
     },
+
+    addUser: function(uid,name,email){
+      firebaseDatabase.child('users').child(uid).set({
+        email: email,
+        provider: 'email',
+        name: name
+      },function(err){
+        if (err){
+          console.log(err);
+        }else{
+          console.log('new email user added to database');
+        }
+      });
+    }
 
   };
 

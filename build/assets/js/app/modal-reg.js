@@ -1,11 +1,16 @@
 //REGISTRATION FORM
-define(['jquery', 'https://alidaca.github.io/MeetUp-clone/assets/js/app/firebase-auth.js'], function($,firebaseAuth){
+define(['jquery', 'https://alidaca.github.io/MeetUp-clone/assets/js/app/firebase-auth.js','https://alidaca.github.io/MeetUp-clone/assets/js/app/modal-controls.js'], function($,firebaseAuth, modalControls){
+
+
+// define(['jquery', '/assets/js/app/firebase-auth.js','/assets/js/app/modal-controls.js'], function($,firebaseAuth,modalControls){
   var regForm = {
     init: function(){
       this.cacheDom();
       this.bindEvents();
+      modalControls.hideMsg();
     },
     cacheDom: function(){
+      this.$message = $('#message');
       this.$signup = $('.signup-form');
       //inputs for signup-form
       // this.$signupEmail = this.$signupForm.find('#email-reg');
@@ -36,6 +41,7 @@ define(['jquery', 'https://alidaca.github.io/MeetUp-clone/assets/js/app/firebase
       //validates entire form and enables registration when valid
       this.$input.on('keyup', this.validateForm.bind(this));
       this.$regBtn.on('click', this.emailSignup.bind(this));
+      this.$backBtn.on('click',modalControls.hideMsg);
     },
     validatePwd: function(){
       // console.log('validatePwd fired');
@@ -176,17 +182,25 @@ define(['jquery', 'https://alidaca.github.io/MeetUp-clone/assets/js/app/firebase
           switch (err.code) {
             case 'EMAIL_TAKEN':
               console.log('The new user account cannot be created because the email is already in use.');
+              regForm.$message.find('p').text('There is already an account for this email. Please register with a new email');
+              regForm.$message.show();
               break;
             case 'INVALID_EMAIL':
               console.log('The specified email is not a valid email.');
+              regForm.$message.find('p').text('The specified email is not a valid email.');
+              regForm.$message.show();
               break;
             default:
               console.log('Error creating user:', err);
+              regForm.$message.find('p').text('Something went wrong. Please try again');
+              regForm.$message.show();
           }
         }else {
           console.log('Successfully created user account with uid:', userData.uid);
+          regForm.$message.hide();
           console.log(userData.uid,regForm.$inputName.val(),regForm.$inputEmail.val());
-          firebaseAuth.addUser(userData.uid,regForm.$inputName.val(),regForm.$inputEmail.val(),'password', firebaseAuth.emailLogin(regForm.$inputEmail.val(), regForm.$inputPwd.val() ));
+          firebaseAuth.addUser(userData.uid,regForm.$inputName.val(),regForm.$inputEmail.val());
+          firebaseAuth.emailLogin(regForm.$inputEmail.val(), regForm.$inputPwd.val());
         }
       });
       return false;
