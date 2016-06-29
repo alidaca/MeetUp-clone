@@ -396,7 +396,9 @@ input.invalid {
   border-radius: 10px;
   width: 400px;
   margin: auto;
-  text-align: center; }
+  text-align: center;
+  max-height: 600px;
+  overflow: scroll; }
   .login-modal-wrap .modal-header {
     display: -ms-flexbox;
     display: flex;
@@ -761,12 +763,18 @@ input.invalid {
   font-size: 14px;
   font-style: italic;
   text-align: left; }
+  .event-info p.errMsg {
+    color: #8B0303;
+    margin: 0;
+    padding: 0;
+    display: none; }
   .event-info .date-and-time {
     display: -ms-flexbox;
     display: flex;
-    -ms-flex-pack: justify;
-        justify-content: space-between;
     margin-bottom: 10px; }
+    .event-info .date-and-time .time-start,
+    .event-info .date-and-time .time-end {
+      margin-left: 20px; }
   .event-info input {
     color: #023D30; }
   .event-info input[type="text"],
@@ -780,8 +788,12 @@ input.invalid {
   .event-info input[type="time"] {
     max-width: 110px; }
 
-.event-info .date-and-time {
-  display: block; }
+@media (max-width: 500px) {
+  .event-info .date-and-time {
+    display: block; }
+    .event-info .date-and-time .time-start,
+    .event-info .date-and-time .time-end {
+      margin-left: 0px; } }
 
 .guests-info {
   margin: 10px auto 0 auto;
