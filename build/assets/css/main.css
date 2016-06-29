@@ -803,6 +803,11 @@ input.invalid {
   font-style: italic;
   text-align: left;
   overflow: hidden; }
+  .guests-info p.errMsg {
+    color: #8B0303;
+    margin: 0 0 10px 0;
+    padding: 0;
+    display: none; }
   .guests-info .btn-wrap {
     text-align: center; }
   .guests-info .guest-list {

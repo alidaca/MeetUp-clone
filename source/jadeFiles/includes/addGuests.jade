@@ -11,7 +11,8 @@
     .guests-info
       form
         label(for="guests") Who is invited? (enter the email addresses separated by a comma)
-        textarea(type="textarea" name="guestList" id="guests" placeholder="John@gmail.com, Jane@yahoo.com" required autofocus)
+        p.errMsg Please add at least one email address
+        textarea(type="textarea" name="guestList" id="guests" placeholder="John@gmail.com, Jane@yahoo.com" autofocus)
         .btn-wrap
           .button.btn-light(id="addBtn") Add Guests
       .guest-list

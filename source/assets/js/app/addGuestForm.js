@@ -19,16 +19,34 @@ define(['jquery', '/assets/js/app/addEventForm.js', '/assets/js/app/firebase-eve
       this.$continueBtn = this.$addGuests.find('#continue');
     },
     bindEvents: function(){
+      this.$emailInput.on('blur change keyup', this.validateInput.bind(this));
       this.$addBtn.on('click', this.parseList.bind(this));
       this.$continueBtn.on('click', {field: list}, this.addToList.bind(this));
     },
+    validateInput: function(){
+      console.log('validateInput fired');
+      console.log(list.length === 0 && this.$emailInput.val() === '');
+      if(list.length === 0 && this.$emailInput.val() === ''){
+        this.$emailInput.addClass('invalid');
+        this.$emailInput.removeClass('valid');
+        this.$emailInput.parent().find('.errMsg').show();
+        return false;
+      }else{
+        this.$emailInput.addClass('valid');
+        this.$emailInput.removeClass('invalid');
+        this.$emailInput.parent().find('.errMsg').hide();
+        return true;
+      }
+    },
     parseList: function(){
-      console.log('parselist fired');
-      console.log(this.$emailInput.val());
-      if (this.$emailInput.val() !== ''){
-        var tempArray = this.$emailInput.val().replace(/ /g,'').split(',');
-        console.log('tempArray='+tempArray);
-        this.addToDisplayed(tempArray);
+      if(this.validateInput){
+        console.log('parselist fired');
+        console.log(this.$emailInput.val());
+        if (this.$emailInput.val() !== ''){
+          var tempArray = this.$emailInput.val().replace(/ /g,'').split(',');
+          console.log('tempArray='+tempArray);
+          this.addToDisplayed(tempArray);
+      }
       }
     },
     addToDisplayed: function(array){
@@ -41,13 +59,16 @@ define(['jquery', '/assets/js/app/addEventForm.js', '/assets/js/app/firebase-eve
       this.$emailInput.val('');
     },
     addToList: function(event){
-      var array = event.data.field;
-      for(var i=0; i<array.length; i++){
-        firebaseEvent.newEvent.guests = array;
+      if(this.$emailInput.hasClass('valid')){
+        var array = event.data.field;
+        for(var i=0; i<array.length; i++){
+          firebaseEvent.newEvent.guests = array;
+        }
+        firebaseEvent.updateEvent(firebaseEvent.goTo('confirmEvent.html'));
+        console.log(firebaseEvent.newEvent);
       }
-      firebaseEvent.updateEvent(firebaseEvent.goTo('confirmEvent.html'));
-      console.log(firebaseEvent.newEvent);
-    }
+      }
+      
   };
 
   return addGuestForm;
