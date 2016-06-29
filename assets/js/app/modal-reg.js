@@ -34,61 +34,102 @@ define(['jquery', '/assets/js/app/firebase-auth.js','/assets/js/app/modal-contro
 
     },
     bindEvents: function(){
+      this.$inputName.on('keyup blur', this.validateName.bind(this));
+      this.$inputEmail.on('keyup blur', this.validateEmail.bind(this));
       //validates password while user types
       this.$inputPwd.on('keyup blur',this.$inputPwd,this.validatePwd.bind(this));
       //validates confirmation password while user types
-      this.$confirmPwd.on('keyup',this.matchPwd.bind(this));
+      this.$confirmPwd.on('keyup blur',this.matchPwd.bind(this));
       //validates entire form and enables registration when valid
       this.$input.on('keyup', this.validateForm.bind(this));
       this.$regBtn.on('click', this.emailSignup.bind(this));
       this.$backBtn.on('click',modalControls.hideMsg);
     },
+    validateName: function(){
+      if (this.$inputName.val().length === 0){
+        this.renderValidation(this.$inputName,'invalid');
+        this.$inputName.parent().find('.errMsg').text('A name is required to register').show();
+      }else{
+        this.renderValidation(this.$inputName,'valid');
+        this.$inputName.parent().find('.errMsg').hide();
+      }
+    },
+    validateEmail: function(){
+      console.log('validateEmail fired');
+      if(this.$inputEmail.val().length === 0){
+        console.log('inputEmail empty');
+        this.renderValidation(this.$inputEmail,'invalid');
+        this.$inputEmail.parent().find('.errMsg').text('An email address is required to register').show();
+      }else if(this.$inputEmail[0].checkValidity() === false){
+        console.log('inputEmail is invalid');
+        this.renderValidation(this.$inputEmail,'invalid');
+        this.$inputEmail.parent().find('.errMsg').text('Please provide a valid email address').show();
+      }else{
+        console.log('inputEmail is valid');
+        this.renderValidation(this.$inputEmail,'valid');
+        this.$inputEmail.parent().find('.errMsg').hide();
+      }
+    },
     validatePwd: function(){
       // console.log('validatePwd fired');
       var password = this.$inputPwd.val();
-      
-      if(!this.validLength(password)){
+      if (password.length === 0){
+        this.$inputPwd.parent().find('.errMsg').show();
         this.renderPwdValidation(this.$inputPwd,this.$promptLength,'invalid');
       }else{
-        this.renderPwdValidation(this.$inputPwd,this.$promptLength, 'valid');
-      }
+          if(!this.validLength(password)){
+          this.renderPwdValidation(this.$inputPwd,this.$promptLength,'invalid');
+        }else{
+          this.renderPwdValidation(this.$inputPwd,this.$promptLength, 'valid');
+        }
 
-      if(!this.includesNumber(password)){
-        this.renderPwdValidation(this.$inputPwd,this.$promptNumber,'invalid');
-      }else{
-        this.renderPwdValidation(this.$inputPwd,this.$promptNumber, 'valid');
-      }
+        if(!this.includesNumber(password)){
+          this.renderPwdValidation(this.$inputPwd,this.$promptNumber,'invalid');
+        }else{
+          this.renderPwdValidation(this.$inputPwd,this.$promptNumber, 'valid');
+        }
 
-      if(!this.includesSymbol(password) || !this.noIllegal(password)){
-        this.renderPwdValidation(this.$inputPwd,this.$promptSymbol,'invalid');
-      }else{
-        this.renderPwdValidation(this.$inputPwd,this.$promptSymbol, 'valid');
-      }
+        if(!this.includesSymbol(password) || !this.noIllegal(password)){
+          this.renderPwdValidation(this.$inputPwd,this.$promptSymbol,'invalid');
+        }else{
+          this.renderPwdValidation(this.$inputPwd,this.$promptSymbol, 'valid');
+        }
 
-      if(!this.includesLowercase(password)){
-        this.renderPwdValidation(this.$inputPwd,this.$promptLowercase,'invalid');
-      }else{
-        this.renderPwdValidation(this.$inputPwd,this.$promptLowercase, 'valid');
-      }
+        if(!this.includesLowercase(password)){
+          this.renderPwdValidation(this.$inputPwd,this.$promptLowercase,'invalid');
+        }else{
+          this.renderPwdValidation(this.$inputPwd,this.$promptLowercase, 'valid');
+        }
 
-      if(!this.includesUppercase(password)){
-        this.renderPwdValidation(this.$inputPwd,this.$promptUppercase,'invalid');
-      }else{
-        this.renderPwdValidation(this.$inputPwd,this.$promptUppercase, 'valid');
-      }
+        if(!this.includesUppercase(password)){
+          this.renderPwdValidation(this.$inputPwd,this.$promptUppercase,'invalid');
+        }else{
+          this.renderPwdValidation(this.$inputPwd,this.$promptUppercase, 'valid');
+        }
 
-      if(this.validLength(password) && this.includesNumber(password) && this.includesSymbol(password) && this.includesLowercase(password) && this.includesUppercase(password) && this.noIllegal(password)){
-        this.markInputPwd('valid');
-      }else{
-        this.markInputPwd('invalid');
+        if(this.validLength(password) && this.includesNumber(password) && this.includesSymbol(password) && this.includesLowercase(password) && this.includesUppercase(password) && this.noIllegal(password)){
+          this.markInputPwd('valid');
+          this.$inputPwd.parent().find('.errMsg').hide();
+        }else{
+          this.markInputPwd('invalid');
+          this.$inputPwd.parent().find('.errMsg').text("Your password doesn't meet the criteria.Please try again.").show();
+        }
       }
-
     },
     matchPwd: function(){
-      if(this.$inputPwd.val() !== undefined && this.$inputPwd.val() === this.$confirmPwd.val()){
-        this.renderConfirmPwdValidation('valid');
-      }else{
-        this.renderConfirmPwdValidation('invalid');
+      switch(this.$confirmPwd.val().length){
+        case 0:
+          this.$confirmPwd.parent().find('.errMsg').text("Please, confirm the password").show();
+          this.renderValidation(this.$confirmPwd, 'invalid');
+          break;
+        default:
+          if(this.$inputPwd.val() !== undefined && this.$inputPwd.val() === this.$confirmPwd.val()){
+            this.renderValidation(this.$confirmPwd, 'valid');
+            this.$confirmPwd.parent().find('.errMsg').hide();
+          }else{
+            this.renderValidation(this.$confirmPwd, 'invalid');
+            this.$confirmPwd.parent().find('.errMsg').text("The passwords don't match, please try again.").show();
+          }
       }
     },
     validLength: function(password){
@@ -160,11 +201,11 @@ define(['jquery', '/assets/js/app/firebase-auth.js','/assets/js/app/modal-contro
         prompt.children('check').removeClass('hidden');
       }
     },
-    renderConfirmPwdValidation: function(validation){
+    renderValidation: function(field, validation){
       if(validation === 'valid'){
-        this.$confirmPwd.removeClass('invalid').addClass('valid');
+        field.removeClass('invalid').addClass('valid');
       }else{
-        this.$confirmPwd.removeClass('valid').addClass('invalid');
+        field.removeClass('valid').addClass('invalid');
       }
     },
     enableRegBtn: function(){
