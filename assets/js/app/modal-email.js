@@ -1,6 +1,6 @@
-// define(['jquery', 'firebase', 'https://alidaca.github.io/MeetUp-clone/assets/js/app/modal-controls.js'], function($,firebase, modalControls){
+define(['jquery', 'firebase', 'https://alidaca.github.io/MeetUp-clone/assets/js/app/modal-controls.js'], function($,firebase, modalControls){
 
-define(['jquery', 'firebase', '/assets/js/app/modal-controls.js'], function($,firebase, modalControls){
+// define(['jquery', 'firebase', '/assets/js/app/modal-controls.js'], function($,firebase, modalControls){
    var modalEmail = {
 
     init: function(){
