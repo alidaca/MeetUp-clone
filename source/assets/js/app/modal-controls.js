@@ -1,4 +1,3 @@
-// define(['jquery', 'app/modal-main.js'], function($,modalMain){
 define(['jquery'], function($){
 
   var modalCtrl = { 

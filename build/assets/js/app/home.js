@@ -1,53 +1,44 @@
 requirejs(['jquery', 'leanModal'],function($, leanModal){
 
 
-  // requirejs(['/assets/js/app/modal-main.js'],function(modalMain){
-  //   modalMain.init();
-  // });
-
-  // requirejs(['/assets/js/app/modal-reg.js'], function(modalReg){
-  //   modalReg.init();
-  // });
-
-  // requirejs(['/assets/js/app/modal-email.js'], function(modalEmail){
-  //   modalEmail.init();
-  // });
-
-  // requirejs(['/assets/js/app/firebase-auth.js'], function(firebaseAuth){
-  //   firebaseAuth.init();
-  // });
-
-  // requirejs(['/assets/js/app/home-events.js'],function(homeEvents){
-  //   homeEvents.init();
-  // });
-  // requirejs(['/assets/js/app/modal-controls.js'], function(modalControls){
-  //   modalControls.init();
-  // });
-
-  requirejs(['https://alidaca.github.io/MeetUp-clone/assets/js/app/modal-main.js'],function(modalMain){
+  requirejs(['/assets/js/app/modal-main.js'],function(modalMain){
     modalMain.init();
   });
 
-  requirejs(['https://alidaca.github.io/MeetUp-clone/assets/js/app/modal-reg.js'], function(modalReg){
+  requirejs(['/assets/js/app/modal-reg.js'], function(modalReg){
     modalReg.init();
   });
 
-  requirejs(['https://alidaca.github.io/MeetUp-clone/assets/js/app/modal-email.js'], function(modalEmail){
+  requirejs(['/assets/js/app/modal-email.js'], function(modalEmail){
     modalEmail.init();
   });
 
-  requirejs(['https://alidaca.github.io/MeetUp-clone/assets/js/app/firebase-auth.js'], function(firebaseAuth){
+  requirejs(['/assets/js/app/firebase-auth.js'], function(firebaseAuth){
     firebaseAuth.init();
   });
 
-  requirejs(['https://alidaca.github.io/MeetUp-clone/assets/js/app/home-events.js'],function(homeEvents){
+  requirejs(['/assets/js/app/home-events.js'],function(homeEvents){
     homeEvents.init();
   });
+  
+  // requirejs(['https://alidaca.github.io/MeetUp-clone/assets/js/app/modal-main.js'],function(modalMain){
+  //   modalMain.init();
+  // });
 
-  // requirejs(['https://alidaca.github.io/MeetUp-clone/assets/js/app/modal-controls.js'], function(modalControls){
-  //   modalControls.init();
-  // })
+  // requirejs(['https://alidaca.github.io/MeetUp-clone/assets/js/app/modal-reg.js'], function(modalReg){
+  //   modalReg.init();
+  // });
 
-  // requirejs(['jquery'],function(modalCtrl){});
+  // requirejs(['https://alidaca.github.io/MeetUp-clone/assets/js/app/modal-email.js'], function(modalEmail){
+  //   modalEmail.init();
+  // });
+
+  // requirejs(['https://alidaca.github.io/MeetUp-clone/assets/js/app/firebase-auth.js'], function(firebaseAuth){
+  //   firebaseAuth.init();
+  // });
+
+  // requirejs(['https://alidaca.github.io/MeetUp-clone/assets/js/app/home-events.js'],function(homeEvents){
+  //   homeEvents.init();
+  // });
 
 });

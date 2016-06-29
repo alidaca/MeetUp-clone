@@ -5,10 +5,18 @@
   font-size: 14px
   font-style: italic
   text-align: left
+  p.errMsg
+    color: $red
+    margin: 0
+    padding: 0
+    display: none
   .date-and-time
     display: flex
-    justify-content: space-between
+    // justify-content: space-between
     margin-bottom: 10px
+    .time-start,
+    .time-end
+      margin-left: 20px
   input
     color: $text1
   input[type="text"],
@@ -23,6 +31,9 @@
     max-width: 110px
 
 @media(max-width:500px)
-.event-info
-  .date-and-time
-    display: block
+  .event-info
+    .date-and-time
+      display: block
+      .time-start,
+      .time-end
+        margin-left: 0px

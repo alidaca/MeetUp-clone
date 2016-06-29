@@ -10,24 +10,44 @@
           i.fa.fa-check(aria-hidden="true")
     .event-info
       form(id="eventForm")
-        label(for="eventType") What event are you planning?
-        input(type="text" name="eventType" id="eventType" placeholder="John's birthday party" required autofocus)
+        .event-type
+          label(for="eventType") What event are you planning?
+          p.errMsg Please, provide an event type
+          input(type="text" name="eventType" id="eventType" placeholder="Birthday party" required autofocus)
+        .event-name
+          label(for="eventName") What is the event's name?
+          p.errMsg Please, provide an event name
+          input(type="text" name="eventName" id="eventName" placeholder="John's Birthday Party" required)
         .date-and-time
           .date
-            label(for="eventDate") When will it take place?
+            label(for="eventDate") When will it start?
+            p.errMsg Please, provide a start date
             input(type="date" name="eventDate" id="eventDate" required)
           .time-start
-            label(for="eventStart") What time will it start?
-            input(type="time" name="eventStart" id="eventStart" required)
+            label(for="eventStart") At what time?
+            p.errMsg Please, provide a start time
+            input(type="time" name="eventStart" id="eventStart" required value="")
+          
+        .date-and-time
+          .date
+            label(for="eventDateEnd") When will it end?
+            p.errMsg Please, provide an end date
+            input(type="date" name="eventDateEnd" id="eventDateEnd" required)
           .time-end
-            label(for="eventEnd") What time will it end? (optional)
-            input(type="time" name="eventEnd" id="eventEnd" class="valid")
-        label(for="eventLocation") Where will it be?
-        input(type="text" name="eventLocation" id="eventLocation" placeholder="Address" required)
-        label(for="hostName") Who is hosting? (optional)
-        input(type="text" name="hostName" id="hostName")
-        label(for="eventDetails") What should your guest know? (optional)
-        textArea(type="textarea" name="eventDetails" id="eventDetails")
+            label(for="eventEnd") At what time?
+            p.errMsg Please, provide an end time
+            input(type="time" name="eventEnd" id="eventEnd" class="valid" required)
+        .location
+          label(for="eventLocation") Where will it be?
+          p.errMsg Please, provide a location for this event
+          input(type="text" name="eventLocation" id="eventLocation" placeholder="Address" required)
+        .host
+          label(for="hostName") Who is hosting?
+          p.errMsg Please, provide a host name
+          input(type="text" name="hostName" id="hostName")
+        .details
+          label(for="eventDetails") What should your guest know? (optional)
+          textArea(type="textarea" name="eventDetails" id="eventDetails")
     .footer
       .button.btn-light(disabled="disabled" id="continueBtn") Continue
         
