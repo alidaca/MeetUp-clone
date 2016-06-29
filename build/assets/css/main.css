@@ -480,6 +480,12 @@ input.invalid {
       display: none; }
     .login-modal-wrap .modal-body .signup-form {
       display: none; }
+      .login-modal-wrap .modal-body .signup-form .errMsg {
+        font-size: 14px;
+        color: #8B0303;
+        margin: 0;
+        padding: 0;
+        display: none; }
     .login-modal-wrap .modal-body label {
       font-size: 16px;
       font-style: italic; }

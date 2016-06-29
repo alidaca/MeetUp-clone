@@ -196,6 +196,7 @@ define(['jquery', '/assets/js/app/googleApi.js', '/assets/js/app/firebase-auth.j
       // console.log('location: '+ this.$eventLocation.hasClass('valid'));
       // console.log('end: '+ this.$eventEnd.hasClass('valid'));
       if(this.$eventType.hasClass('valid') && 
+        this.$eventName.hasClass('valid')&&
         this.$eventDate.hasClass('valid') && 
         this.$eventDateEnd.hasClass('valid')&&
         this.$eventStart.hasClass('valid') && 
@@ -208,8 +209,9 @@ define(['jquery', '/assets/js/app/googleApi.js', '/assets/js/app/firebase-auth.j
     saveEvent:function(){
       console.log(this.$continueBtn.prop('disabled'));
       if(this.$continueBtn.prop('disabled')!== undefined){
-        firebaseEvent.newEvent.name = this.$eventType.val();
+        firebaseEvent.newEvent.name = this.$eventName.val();
         firebaseEvent.newEvent.date = this.formatDate(this.$eventDate.val());
+        firebaseEvent.newEvent.dateEnd = this.formatDate(this.$eventDateEnd.val());
         // firebaseEvent.newEvent.date = this.$eventDate.val();
         firebaseEvent.newEvent.start = this.$eventStart.val();
         firebaseEvent.newEvent.end = this.formatTime(this.$eventEnd.val());

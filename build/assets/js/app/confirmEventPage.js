@@ -5,6 +5,7 @@ define(['jquery','firebase'], function($,firebase){
     eventInfo: {
       name: '',
       date: '',
+      dateEnd: '',
       start: '',
       end: '',
       location:' ',
@@ -24,6 +25,7 @@ define(['jquery','firebase'], function($,firebase){
       this.$footer = $('.footer');
       this.$name = this.$confirmInfo.find('#confirmName');
       this.$date = this.$confirmInfo.find('#confirmDate');
+      this.$dateEnd = this.$confirmInfo.find('#confirmDateEnd');
       this.$start = this.$confirmInfo.find('#confirmStart');
       this.$end = this.$confirmInfo.find('#confirmEnd');
       this.$location = this.$confirmInfo.find('#confirmLocation');
@@ -48,6 +50,7 @@ define(['jquery','firebase'], function($,firebase){
         return ref.once('value', function(snapshot){
           confirmEvent.eventInfo.name = snapshot.val().name;
           confirmEvent.eventInfo.date = snapshot.val().date;
+          confirmEvent.eventInfo.dateEnd = snapshot.val().dateEnd;
           confirmEvent.eventInfo.start = snapshot.val().start;
           confirmEvent.eventInfo.end = snapshot.val().end;
           confirmEvent.eventInfo.location = snapshot.val().location;
@@ -63,23 +66,26 @@ define(['jquery','firebase'], function($,firebase){
     renderData: function(){
       this.$name.text(this.eventInfo.name);
       this.$date.text(this.eventInfo.date);
+      this.$dateEnd.text(this.eventInfo.dateEnd);
       this.$start.text(this.eventInfo.start);
+      this.$end.text(this.eventInfo.end);
+      this.$host.text(this.eventInfo.host);
 
-      if(this.eventInfo.end === ''){
-        this.$end.parent().hide();
-      }else{
-        this.$end.text(this.eventInfo.end);
-        this.$end.parent().show();
-      }
+      // if(this.eventInfo.end === ''){
+      //   this.$end.parent().hide();
+      // }else{
+      //   this.$end.text(this.eventInfo.end);
+      //   this.$end.parent().show();
+      // }
       
-      this.$location.text(this.eventInfo.location);
+      // this.$location.text(this.eventInfo.location);
 
-      if(this.eventInfo.host === ''){
-        this.$host.parent().hide();
-      }else{
-        this.$host.text(this.eventInfo.host);
-        this.$host.parent().show();
-      }
+      // if(this.eventInfo.host === ''){
+      //   this.$host.parent().hide();
+      // }else{
+      //   this.$host.text(this.eventInfo.host);
+      //   this.$host.parent().show();
+      // }
 
       if(this.eventInfo.details === ''){
         this.$details.parent().hide();
