@@ -776,10 +776,8 @@ input.invalid {
     display: none; }
   .event-info .date-and-time {
     display: -ms-flexbox;
-    display: flex;
-    margin-bottom: 10px; }
-    .event-info .date-and-time .time-start,
-    .event-info .date-and-time .time-end {
+    display: flex; }
+    .event-info .date-and-time .date-end {
       margin-left: 20px; }
   .event-info input {
     color: #023D30; }
@@ -797,8 +795,7 @@ input.invalid {
 @media (max-width: 500px) {
   .event-info .date-and-time {
     display: block; }
-    .event-info .date-and-time .time-start,
-    .event-info .date-and-time .time-end {
+    .event-info .date-and-time .date-end {
       margin-left: 0px; } }
 
 .guests-info {

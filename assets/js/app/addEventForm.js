@@ -1,6 +1,6 @@
-define(['jquery', 'https://alidaca.github.io/MeetUp-clone/assets/js/app/googleApi.js', 'https://alidaca.github.io/MeetUp-clone/assets/js/app/firebase-auth.js','https://alidaca.github.io/MeetUp-clone/assets/js/app/firebase-event.js'],function($, googleApi,firebaseAuth, firebaseEvent){
+// define(['jquery', 'https://alidaca.github.io/MeetUp-clone/assets/js/app/googleApi.js', 'https://alidaca.github.io/MeetUp-clone/assets/js/app/firebase-auth.js','https://alidaca.github.io/MeetUp-clone/assets/js/app/firebase-event.js'],function($, googleApi,firebaseAuth, firebaseEvent){
 
-// define(['jquery', '/assets/js/app/googleApi.js', '/assets/js/app/firebase-auth.js','/assets/js/app/firebase-event.js'],function($, googleApi,firebaseAuth, firebaseEvent){
+define(['jquery', '/assets/js/app/googleApi.js', '/assets/js/app/firebase-auth.js','/assets/js/app/firebase-event.js'],function($, googleApi,firebaseAuth, firebaseEvent){
 
   var currentDate = Date.now();
  
@@ -29,9 +29,9 @@ define(['jquery', 'https://alidaca.github.io/MeetUp-clone/assets/js/app/googleAp
       this.$eventForm = $('#eventForm');
       this.$eventType = this.$eventForm.find('#eventType');
       this.$eventName = this.$eventForm.find('#eventName');
-      this.$eventDate = this.$eventForm.find('#eventDate');
+      // this.$eventDate = this.$eventForm.find('#eventDate');
       this.$eventStart = this.$eventForm.find('#eventStart');
-      this.$eventDateEnd = this.$eventForm.find('#eventDateEnd');
+      // this.$eventDateEnd = this.$eventForm.find('#eventDateEnd');
       this.$eventEnd = this.$eventForm.find('#eventEnd');
       this.$eventLocation = this.$eventForm.find('#eventLocation');
       this.$eventHost = this.$eventForm.find('#hostName');
@@ -42,130 +42,63 @@ define(['jquery', 'https://alidaca.github.io/MeetUp-clone/assets/js/app/googleAp
     bindEvents: function(){
       this.$eventType.on('blur change keyup', {field: addEventForm.$eventType}, this.isEmpty);
       this.$eventName.on('blur change keyup', {field: addEventForm.$eventName}, this.isEmpty);
-      this.$eventDate.on('change blur', this.validateDateStart.bind(this));
-      this.$eventDateEnd.on('change blur', this.validateDateEnd.bind(this));
-      this.$eventStart.on('change blur', this.validateTimeStart.bind(this));
-      this.$eventEnd.on('keyup blur', this.validateTimeEnd.bind(this));
+      // this.$eventDate.on('change blur', this.validateDateStart.bind(this));
+      // this.$eventDateEnd.on('change blur', this.validateDateEnd.bind(this));
+      this.$eventStart.on('change blur', this.validateStart.bind(this));
+      this.$eventEnd.on('keyup blur', this.validateEnd.bind(this));
       this.$eventLocation.on('blur change',{field: addEventForm.$eventLocation}, this.isEmpty);
       this.$eventHost.on('blur change keyup', {field: addEventForm.$eventHost}, this.isEmpty);
       $('input, textarea').on('change keyup',this.validateForm.bind(this));
       this.$continueBtn.on('click', this.saveEvent.bind(this));
     },
 
-    validateDateStart: function(){
+    validateStart: function(){
       console.log('validateDateStart fired');
-      console.log(this.$eventDate.val());
-      var inputDate = Date.parse(this.$eventDate.val());
+      console.log(this.$eventStart.val());
+      var inputDate = Date.parse(this.$eventStart.val());
       console.log('currentDate: ' + currentDate);
       console.log('inpuDate: ' + inputDate);
-      console.log('dateStart condition is: ' + inputDate >currentDate);
+      console.log('dateStart condition is: ' + inputDate > currentDate);
       switch(isNaN(inputDate)){
         case true:
-          console.log('eventDate is empty');
-          console.log(this.$eventDate.parent().find('errMsg'));
-          addEventForm.renderValidation(addEventForm.$eventDate, false);
-          this.$eventDate.parent().find('.errMsg').text('Please, provide a start date').show();
+          console.log('eventStart is empty');
+          addEventForm.renderValidation(addEventForm.$eventStart, false);
+          this.$eventStart.parent().find('.errMsg').text('Please, provide a start date and time').show();
           break;
         default:
           console.log('Date condition is:' + inputDate > currentDate);
           if(inputDate > currentDate){
-            addEventForm.renderValidation(addEventForm.$eventDate, true);
-            console.log('date errMsg is: ' + this.$eventDate.parent().find('errMsg').text());
-            this.$eventDate.parent().find('.errMsg').hide();
+            addEventForm.renderValidation(addEventForm.$eventStart, true);
+            this.$eventStart.parent().find('.errMsg').hide();
             return true;
           }else{
-            addEventForm.renderValidation(addEventForm.$eventDate, false);
-            this.$eventDate.parent().find('.errMsg').text('The start date must be in the future').show();
+            addEventForm.renderValidation(addEventForm.$eventStart, false);
+            this.$eventStart.parent().find('.errMsg').text('Your event must start after today').show();
             return false;
           }
           break;
       }
     },
 
-    validateDateEnd: function(){
-      var inputDateStart = Date.parse(this.$eventDate.val());
-      var inputDateEnd = Date.parse(this.$eventDateEnd.val());
+    validateEnd: function(){
+      var inputDateStart = Date.parse(this.$eventStart.val());
+      var inputDateEnd = Date.parse(this.$eventEnd.val());
       console.log(inputDateEnd);
       switch(isNaN(inputDateEnd)){
         case true:
-          this.renderValidation(addEventForm.$eventDateEnd, false);
-          this.$eventDateEnd.parent().find('.errMsg').text('Please, provide an end date').show();
+          this.renderValidation(addEventForm.$eventEnd, false);
+          this.$eventEnd.parent().find('.errMsg').text('Please, provide an end date').show();
           break;
         default:
           if(inputDateEnd >= inputDateStart){
-            this.renderValidation(addEventForm.$eventDateEnd, true);
-            this.$eventDateEnd.parent().find('.errMsg').hide();
-          }else{
-            this.renderValidation(addEventForm.$eventDateEnd, false);
-            this.$eventDateEnd.parent().find('.errMsg').text('The end date must be after the start date');
-          }
-      }
-    },
-
-    // validateEventType: function(){
-    //   if(this.$eventType.val()){
-    //     this.renderValidation(addEventForm.$eventType, true);
-    //     return true;
-    //   }else{
-    //     this.renderValidation(addEventForm.$eventType, false);
-    //     return false;
-    //   }
-    // },
-    validateTimeStart: function(){
-      console.log(this.$eventStart.val().length);
-      console.log('validateTimeStart fired');
-      switch(this.$eventStart.val().length){
-        case 0:
-          console.log('switch statement for 0 fired');
-          this.renderValidation(this.$eventStart, false);
-          this.$eventStart.parent().find('.errMsg').text('Please, provide a start time').show();
-          break;
-        default:
-          console.log('switch statement default fired');
-          this.renderValidation(this.$eventStart, true);
-          this.$eventStart.parent().find('.errMsg').hide();
-      }
-
-    },
-
-    validateTimeEnd: function(){
-      var startTime = this.$eventStart.val();
-      var endTime = this.$eventEnd.val();
-      console.log(endTime > startTime);
-      switch(endTime.length){
-        case 0:
-          console.log('switch statement for 0 fired');
-          this.renderValidation(this.$eventEnd, false);
-          this.$eventEnd.parent().find('.errMsg').text('Please, provide an eventEnd time').show();
-          break;
-        default:
-          if((this.$eventDate.val() === this.$eventDateEnd.val() && startTime < endTime) ){
-            console.log('switch statement default fired');
-          this.renderValidation(this.$eventEnd, true);
-          this.$eventStart.parent().find('.errMsg').hide();
-          }else if (this.$eventDate.val() !== this.$eventDateEnd.val()){
-            this.renderValidation(this.$eventEnd, true);
+            this.renderValidation(addEventForm.$eventEnd, true);
             this.$eventEnd.parent().find('.errMsg').hide();
           }else{
-            this.renderValidation(this.$eventEnd, false);
-            this.$eventEnd.parent().find('.errMsg').text('The end time must be after the start time').show();
+            this.renderValidation(addEventForm.$eventEnd, false);
+            this.$eventEnd.parent().find('.errMsg').text('Your event must end after the start date and time');
           }
       }
-
     },
-
-    // validateTime: function(){
-    //   console.log(this.$eventEnd);
-    //   if(this.$eventStart.val()){
-    //     if(this.$eventEnd.val() === '' || this.$eventEnd.val()>this.$eventStart.val()){
-    //       this.renderValidation(this.$eventEnd, true);
-    //       return true;
-    //     }else{
-    //       this.renderValidation(this.$eventEnd, false);
-    //       return false;
-    //     }
-    //   }
-    // },
     renderValidation: function(field, value){
       if(value === true){
         console.log('added valid');
@@ -186,19 +119,14 @@ define(['jquery', 'https://alidaca.github.io/MeetUp-clone/assets/js/app/googleAp
       }else{
         addEventForm.renderValidation(inputField, true);
         inputField.parent().find('.errMsg').hide();
+        console.log(inputField.val());
       }
     },
     validateForm: function(){
-      // console.log('validateform fired');
-      // console.log('name: ' + this.$eventType.hasClass('valid'));
-      // console.log('date: '+this.$eventDate.hasClass('valid'));
-      // console.log('start: '+ this.$eventStart[0].checkValidity());
-      // console.log('location: '+ this.$eventLocation.hasClass('valid'));
-      // console.log('end: '+ this.$eventEnd.hasClass('valid'));
       if(this.$eventType.hasClass('valid') && 
         this.$eventName.hasClass('valid')&&
-        this.$eventDate.hasClass('valid') && 
-        this.$eventDateEnd.hasClass('valid')&&
+        // this.$eventDate.hasClass('valid') && 
+        // this.$eventDateEnd.hasClass('valid')&&
         this.$eventStart.hasClass('valid') && 
         this.$eventEnd.hasClass('valid')&&
         this.$eventLocation.hasClass('valid') && 
@@ -209,12 +137,14 @@ define(['jquery', 'https://alidaca.github.io/MeetUp-clone/assets/js/app/googleAp
     saveEvent:function(){
       console.log(this.$continueBtn.prop('disabled'));
       if(this.$continueBtn.prop('disabled')!== undefined){
+        var eventStart = this.$eventStart.val().split('T');
+        var eventEnd = this.$eventEnd.val().split('T');
         firebaseEvent.newEvent.name = this.$eventName.val();
-        firebaseEvent.newEvent.date = this.formatDate(this.$eventDate.val());
-        firebaseEvent.newEvent.dateEnd = this.formatDate(this.$eventDateEnd.val());
+        firebaseEvent.newEvent.date = this.formatDate(eventStart[0]);
+        firebaseEvent.newEvent.dateEnd = this.formatDate(eventEnd[0]);
         // firebaseEvent.newEvent.date = this.$eventDate.val();
-        firebaseEvent.newEvent.start = this.$eventStart.val();
-        firebaseEvent.newEvent.end = this.formatTime(this.$eventEnd.val());
+        firebaseEvent.newEvent.start = this.formatTime(eventStart[1]);
+        firebaseEvent.newEvent.end = this.formatTime(eventEnd[1]);
         firebaseEvent.newEvent.location = this.$eventLocation.val();
         firebaseEvent.newEvent.host = this.$eventHost.val();
         firebaseEvent.newEvent.details = this.$eventDetails.val();
@@ -232,7 +162,7 @@ define(['jquery', 'https://alidaca.github.io/MeetUp-clone/assets/js/app/googleAp
         $('this').val('');
         // console.log(this);
       });
-      this.$eventDate.val('');
+      //this.$eventDate.val('');
       this.$eventStart.val('');
       this.$eventEnd.val('');
     },
@@ -250,7 +180,7 @@ define(['jquery', 'https://alidaca.github.io/MeetUp-clone/assets/js/app/googleAp
       return fullDate;
     },
     formatTime: function(value){
-      var formattedTime =  "";
+      var formattedTime =  '';
       if(value !== ''){
         var timeArr = value.split(':');
         var ampm,h;

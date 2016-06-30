@@ -70,22 +70,7 @@ define(['jquery','firebase'], function($,firebase){
       this.$start.text(this.eventInfo.start);
       this.$end.text(this.eventInfo.end);
       this.$host.text(this.eventInfo.host);
-
-      // if(this.eventInfo.end === ''){
-      //   this.$end.parent().hide();
-      // }else{
-      //   this.$end.text(this.eventInfo.end);
-      //   this.$end.parent().show();
-      // }
-      
-      // this.$location.text(this.eventInfo.location);
-
-      // if(this.eventInfo.host === ''){
-      //   this.$host.parent().hide();
-      // }else{
-      //   this.$host.text(this.eventInfo.host);
-      //   this.$host.parent().show();
-      // }
+      this.$location.text(this.eventInfo.location);
 
       if(this.eventInfo.details === ''){
         this.$details.parent().hide();
