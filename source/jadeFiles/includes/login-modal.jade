@@ -35,16 +35,16 @@
     //sign-up screen
     .signup-form
       form
-        .nameField
-          label(for="name") What's your name? (required)
-          p.errMsg Please, provide your name.
-          input(type="text" name="name" id="name" value="" placeholder="John Smith" autocomplete="name" required autofocus)
         .birthdayField
           label(for="birth") What is your birth date? (optional)
           input(type="date" name="birth" id="birth")
         .jpbField
           label(for="job") What is your job title? (optional)
           input(type="text" name="job" id="job" value="" placeholder="e.g. Business Manager")
+        .nameField
+          label(for="name") What's your name? (required)
+          p.errMsg Please, provide your name.
+          input(type="text" name="name" id="name" value="" placeholder="John Smith" autocomplete="name" required autofocus)
         .emailField
           label(for="email-reg") Enter your email (required)
           p.errMsg Please, provide your email.

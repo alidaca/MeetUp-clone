@@ -19,24 +19,15 @@
           p.errMsg Please, provide an event name
           input(type="text" name="eventName" id="eventName" placeholder="John's Birthday Party" required)
         .date-and-time
-          .date
-            label(for="eventDate") When will it start?
-            p.errMsg Please, provide a start date
-            input(type="date" name="eventDate" id="eventDate" required)
-          .time-start
-            label(for="eventStart") At what time?
-            p.errMsg Please, provide a start time
-            input(type="time" name="eventStart" id="eventStart" required value="")
+          .date-start
+              label(for="eventStart") When will it start?
+              p.errMsg Please, provide a start date and time
+              input(type="datetime-local" name="eventDate" id="eventStart" required)
+          .date-end
+              label(for="eventEnd") When will it end?
+              p.errMsg Please, provide a start date and time
+              input(type="datetime-local" name="eventEnd" id="eventEnd" required value="")
           
-        .date-and-time
-          .date
-            label(for="eventDateEnd") When will it end?
-            p.errMsg Please, provide an end date
-            input(type="date" name="eventDateEnd" id="eventDateEnd" required)
-          .time-end
-            label(for="eventEnd") At what time?
-            p.errMsg Please, provide an end time
-            input(type="time" name="eventEnd" id="eventEnd" class="valid" required)
         .location
           label(for="eventLocation") Where will it be?
           p.errMsg Please, provide a location for this event
