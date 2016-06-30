@@ -3,6 +3,8 @@
 define(['jquery', '/assets/js/app/addEventForm.js', '/assets/js/app/firebase-event.js'],function($, addEventForm, firebaseEvent){
 
   var list = [];
+  var validEmails = [];
+  var invalidEmails = [];
   var addGuestForm = {
     init: function(){
       console.log(addEventForm.newEvent);
@@ -42,12 +44,23 @@ define(['jquery', '/assets/js/app/addEventForm.js', '/assets/js/app/firebase-eve
       if(this.validateInput){
         console.log('parselist fired');
         console.log(this.$emailInput.val());
-        if (this.$emailInput.val() !== ''){
+        if (this.$emailInput.val() !== ''){ 
           var tempArray = this.$emailInput.val().replace(/ /g,'').split(',');
-          console.log('tempArray='+tempArray);
-          this.addToDisplayed(tempArray);
+          tempArray.forEach(this.validateEmails);
+          console.log('tempArray= '+ tempArray);
+          console.log('validEmails= '+ validEmails);
+          console.log('invalidEmails= '+invalidEmails);
+          this.addToDisplayed(validEmails);
+        }
       }
-      }
+    },
+    validateEmails: function(element){
+       var re = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
+          if(re.test(element)){
+            validEmails.push(element);
+          }else{
+            invalidEmails.push(element);
+          }
     },
     addToDisplayed: function(array){
       for(var i=0; i<array.length; i++){
@@ -57,6 +70,17 @@ define(['jquery', '/assets/js/app/addEventForm.js', '/assets/js/app/firebase-eve
         this.$continueBtn.removeAttr('disabled');
       }
       this.$emailInput.val('');
+      if(invalidEmails.length !== 0){
+        console.log('invalidEmails: '+invalidEmails);
+        console.log('found invalid addresses');
+        this.$emailInput.parent().find('.errMsg').text('The following addresses are invalid and were not added: '+invalidEmails.join()).show();
+      }else{
+        console.log('invalidEmails: '+invalidEmails);
+        console.log('no invalid addresses');
+        this.$emailInput.parent().find('.errMsg').hide();
+      }
+      validEmails = [];
+      invalidEmails = [];
     },
     addToList: function(event){
       if(this.$emailInput.hasClass('valid')){
