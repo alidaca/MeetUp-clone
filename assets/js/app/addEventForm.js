@@ -42,8 +42,6 @@ define(['jquery', '/assets/js/app/googleApi.js', '/assets/js/app/firebase-auth.j
     bindEvents: function(){
       this.$eventType.on('blur change keyup', {field: addEventForm.$eventType}, this.isEmpty);
       this.$eventName.on('blur change keyup', {field: addEventForm.$eventName}, this.isEmpty);
-      // this.$eventDate.on('change blur', this.validateDateStart.bind(this));
-      // this.$eventDateEnd.on('change blur', this.validateDateEnd.bind(this));
       this.$eventStart.on('change blur', this.validateStart.bind(this));
       this.$eventEnd.on('keyup blur', this.validateEnd.bind(this));
       this.$eventLocation.on('blur change',{field: addEventForm.$eventLocation}, this.isEmpty);
