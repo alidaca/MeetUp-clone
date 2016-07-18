@@ -1,8 +1,8 @@
 //REGISTRATION FORM
-// define(['jquery', 'https://alidaca.github.io/MeetUp-clone/assets/js/app/firebase-auth.js','https://alidaca.github.io/MeetUp-clone/assets/js/app/modal-controls.js'], function($,firebaseAuth, modalControls){
+define(['jquery', 'https://alidaca.github.io/MeetUp-clone/assets/js/app/firebase-auth.js','https://alidaca.github.io/MeetUp-clone/assets/js/app/modal-controls.js'], function($,firebaseAuth, modalControls){
 
 
-define(['jquery', '/assets/js/app/firebase-auth.js','/assets/js/app/modal-controls.js'], function($,firebaseAuth,modalControls){
+// define(['jquery', '/assets/js/app/firebase-auth.js','/assets/js/app/modal-controls.js'], function($,firebaseAuth,modalControls){
   var regForm = {
     init: function(){
       this.cacheDom();
