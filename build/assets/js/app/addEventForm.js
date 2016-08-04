@@ -42,8 +42,8 @@ define(['jquery', 'https://alidaca.github.io/MeetUp-clone/assets/js/app/googleAp
     bindEvents: function(){
       this.$eventType.on('blur change keyup', {field: addEventForm.$eventType}, this.isEmpty);
       this.$eventName.on('blur change keyup', {field: addEventForm.$eventName}, this.isEmpty);
-      this.$eventStart.on('change blur', this.validateStart.bind(this));
-      this.$eventEnd.on('keyup blur', this.validateEnd.bind(this));
+      this.$eventStart.on('change blur keyup', this.validateStart.bind(this));
+      this.$eventEnd.on('keyup blur change', this.validateEnd.bind(this));
       this.$eventLocation.on('blur change',{field: addEventForm.$eventLocation}, this.isEmpty);
       this.$eventHost.on('blur change keyup', {field: addEventForm.$eventHost}, this.isEmpty);
       $('input, textarea').on('change keyup',this.validateForm.bind(this));
@@ -88,12 +88,12 @@ define(['jquery', 'https://alidaca.github.io/MeetUp-clone/assets/js/app/googleAp
           this.$eventEnd.parent().find('.errMsg').text('Please, provide an end date').show();
           break;
         default:
-          if(inputDateEnd >= inputDateStart){
+          if(inputDateEnd > inputDateStart){
             this.renderValidation(addEventForm.$eventEnd, true);
             this.$eventEnd.parent().find('.errMsg').hide();
           }else{
             this.renderValidation(addEventForm.$eventEnd, false);
-            this.$eventEnd.parent().find('.errMsg').text('Your event must end after the start date and time');
+            this.$eventEnd.parent().find('.errMsg').text('Your event must end after the start date and time').show();
           }
       }
     },
