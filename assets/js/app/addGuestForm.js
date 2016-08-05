@@ -1,6 +1,6 @@
-define(['jquery', 'https://alidaca.github.io/MeetUp-clone/assets/js/app/addEventForm.js', 'https://alidaca.github.io/MeetUp-clone/assets/js/app/firebase-event.js'],function($, addEventForm, firebaseEvent){
+// define(['jquery', 'https://alidaca.github.io/MeetUp-clone/assets/js/app/addEventForm.js', 'https://alidaca.github.io/MeetUp-clone/assets/js/app/firebase-event.js'],function($, addEventForm, firebaseEvent){
 
-// define(['jquery', '/assets/js/app/addEventForm.js', '/assets/js/app/firebase-event.js'],function($, addEventForm, firebaseEvent){
+define(['jquery', '/assets/js/app/addEventForm.js', '/assets/js/app/firebase-event.js'],function($, addEventForm, firebaseEvent){
 
   var list = [];
   var validEmails = [];
